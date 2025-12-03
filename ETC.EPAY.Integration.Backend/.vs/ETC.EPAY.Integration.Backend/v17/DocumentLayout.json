@@ -1,0 +1,360 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\chaung\\source\\repos\\ETC.EPAY.Integration.Backend\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{EA416BF3-4B17-4AFB-8ED0-820DC992F730}|ETC.EPAY.Integration.Backend\\ETC.EPAY.Integration.Backend.csproj|c:\\users\\chaung\\source\\repos\\etc.epay.integration.backend\\etc.epay.integration.backend\\dataaccess\\unitofwork\\iunitofworkcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EA416BF3-4B17-4AFB-8ED0-820DC992F730}|ETC.EPAY.Integration.Backend\\ETC.EPAY.Integration.Backend.csproj|solutionrelative:etc.epay.integration.backend\\dataaccess\\unitofwork\\iunitofworkcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EA416BF3-4B17-4AFB-8ED0-820DC992F730}|ETC.EPAY.Integration.Backend\\ETC.EPAY.Integration.Backend.csproj|c:\\users\\chaung\\source\\repos\\etc.epay.integration.backend\\etc.epay.integration.backend\\controllers\\paymentcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EA416BF3-4B17-4AFB-8ED0-820DC992F730}|ETC.EPAY.Integration.Backend\\ETC.EPAY.Integration.Backend.csproj|solutionrelative:etc.epay.integration.backend\\controllers\\paymentcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EA416BF3-4B17-4AFB-8ED0-820DC992F730}|ETC.EPAY.Integration.Backend\\ETC.EPAY.Integration.Backend.csproj|c:\\users\\chaung\\source\\repos\\etc.epay.integration.backend\\etc.epay.integration.backend\\services\\paymentgateway\\paygwservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EA416BF3-4B17-4AFB-8ED0-820DC992F730}|ETC.EPAY.Integration.Backend\\ETC.EPAY.Integration.Backend.csproj|solutionrelative:etc.epay.integration.backend\\services\\paymentgateway\\paygwservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EA416BF3-4B17-4AFB-8ED0-820DC992F730}|ETC.EPAY.Integration.Backend\\ETC.EPAY.Integration.Backend.csproj|c:\\users\\chaung\\source\\repos\\etc.epay.integration.backend\\etc.epay.integration.backend\\services\\payment\\paymentservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EA416BF3-4B17-4AFB-8ED0-820DC992F730}|ETC.EPAY.Integration.Backend\\ETC.EPAY.Integration.Backend.csproj|solutionrelative:etc.epay.integration.backend\\services\\payment\\paymentservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EA416BF3-4B17-4AFB-8ED0-820DC992F730}|ETC.EPAY.Integration.Backend\\ETC.EPAY.Integration.Backend.csproj|c:\\users\\chaung\\source\\repos\\etc.epay.integration.backend\\etc.epay.integration.backend\\dataaccess\\paymentlogdao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EA416BF3-4B17-4AFB-8ED0-820DC992F730}|ETC.EPAY.Integration.Backend\\ETC.EPAY.Integration.Backend.csproj|solutionrelative:etc.epay.integration.backend\\dataaccess\\paymentlogdao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EA416BF3-4B17-4AFB-8ED0-820DC992F730}|ETC.EPAY.Integration.Backend\\ETC.EPAY.Integration.Backend.csproj|c:\\users\\chaung\\source\\repos\\etc.epay.integration.backend\\etc.epay.integration.backend\\extensions\\paygwhelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EA416BF3-4B17-4AFB-8ED0-820DC992F730}|ETC.EPAY.Integration.Backend\\ETC.EPAY.Integration.Backend.csproj|solutionrelative:etc.epay.integration.backend\\extensions\\paygwhelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EA416BF3-4B17-4AFB-8ED0-820DC992F730}|ETC.EPAY.Integration.Backend\\ETC.EPAY.Integration.Backend.csproj|c:\\users\\chaung\\source\\repos\\etc.epay.integration.backend\\etc.epay.integration.backend\\models\\paymentlog.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EA416BF3-4B17-4AFB-8ED0-820DC992F730}|ETC.EPAY.Integration.Backend\\ETC.EPAY.Integration.Backend.csproj|solutionrelative:etc.epay.integration.backend\\models\\paymentlog.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EA416BF3-4B17-4AFB-8ED0-820DC992F730}|ETC.EPAY.Integration.Backend\\ETC.EPAY.Integration.Backend.csproj|c:\\users\\chaung\\source\\repos\\etc.epay.integration.backend\\etc.epay.integration.backend\\services\\payment\\ipaymentservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EA416BF3-4B17-4AFB-8ED0-820DC992F730}|ETC.EPAY.Integration.Backend\\ETC.EPAY.Integration.Backend.csproj|solutionrelative:etc.epay.integration.backend\\services\\payment\\ipaymentservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EA416BF3-4B17-4AFB-8ED0-820DC992F730}|ETC.EPAY.Integration.Backend\\ETC.EPAY.Integration.Backend.csproj|c:\\users\\chaung\\source\\repos\\etc.epay.integration.backend\\etc.epay.integration.backend\\dataaccess\\ipaymentlogdao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EA416BF3-4B17-4AFB-8ED0-820DC992F730}|ETC.EPAY.Integration.Backend\\ETC.EPAY.Integration.Backend.csproj|solutionrelative:etc.epay.integration.backend\\dataaccess\\ipaymentlogdao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EA416BF3-4B17-4AFB-8ED0-820DC992F730}|ETC.EPAY.Integration.Backend\\ETC.EPAY.Integration.Backend.csproj|c:\\users\\chaung\\source\\repos\\etc.epay.integration.backend\\etc.epay.integration.backend\\dataaccess\\paymentlog\\paymentlogquery.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EA416BF3-4B17-4AFB-8ED0-820DC992F730}|ETC.EPAY.Integration.Backend\\ETC.EPAY.Integration.Backend.csproj|solutionrelative:etc.epay.integration.backend\\dataaccess\\paymentlog\\paymentlogquery.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EA416BF3-4B17-4AFB-8ED0-820DC992F730}|ETC.EPAY.Integration.Backend\\ETC.EPAY.Integration.Backend.csproj|c:\\users\\chaung\\source\\repos\\etc.epay.integration.backend\\etc.epay.integration.backend\\request\\paygwrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EA416BF3-4B17-4AFB-8ED0-820DC992F730}|ETC.EPAY.Integration.Backend\\ETC.EPAY.Integration.Backend.csproj|solutionrelative:etc.epay.integration.backend\\request\\paygwrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EA416BF3-4B17-4AFB-8ED0-820DC992F730}|ETC.EPAY.Integration.Backend\\ETC.EPAY.Integration.Backend.csproj|c:\\users\\chaung\\source\\repos\\etc.epay.integration.backend\\etc.epay.integration.backend\\dataaccess\\unitofwork\\unitofworkcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EA416BF3-4B17-4AFB-8ED0-820DC992F730}|ETC.EPAY.Integration.Backend\\ETC.EPAY.Integration.Backend.csproj|solutionrelative:etc.epay.integration.backend\\dataaccess\\unitofwork\\unitofworkcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EA416BF3-4B17-4AFB-8ED0-820DC992F730}|ETC.EPAY.Integration.Backend\\ETC.EPAY.Integration.Backend.csproj|c:\\users\\chaung\\source\\repos\\etc.epay.integration.backend\\etc.epay.integration.backend\\services\\paymentgateway\\ipaygwservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EA416BF3-4B17-4AFB-8ED0-820DC992F730}|ETC.EPAY.Integration.Backend\\ETC.EPAY.Integration.Backend.csproj|solutionrelative:etc.epay.integration.backend\\services\\paymentgateway\\ipaygwservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EA416BF3-4B17-4AFB-8ED0-820DC992F730}|ETC.EPAY.Integration.Backend\\ETC.EPAY.Integration.Backend.csproj|c:\\users\\chaung\\source\\repos\\etc.epay.integration.backend\\etc.epay.integration.backend\\dataaccess\\unitofwork\\iunitofwork.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EA416BF3-4B17-4AFB-8ED0-820DC992F730}|ETC.EPAY.Integration.Backend\\ETC.EPAY.Integration.Backend.csproj|solutionrelative:etc.epay.integration.backend\\dataaccess\\unitofwork\\iunitofwork.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EA416BF3-4B17-4AFB-8ED0-820DC992F730}|ETC.EPAY.Integration.Backend\\ETC.EPAY.Integration.Backend.csproj|c:\\users\\chaung\\source\\repos\\etc.epay.integration.backend\\etc.epay.integration.backend\\dataaccess\\unitofwork\\unitofwork.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EA416BF3-4B17-4AFB-8ED0-820DC992F730}|ETC.EPAY.Integration.Backend\\ETC.EPAY.Integration.Backend.csproj|solutionrelative:etc.epay.integration.backend\\dataaccess\\unitofwork\\unitofwork.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EA416BF3-4B17-4AFB-8ED0-820DC992F730}|ETC.EPAY.Integration.Backend\\ETC.EPAY.Integration.Backend.csproj|c:\\users\\chaung\\source\\repos\\etc.epay.integration.backend\\etc.epay.integration.backend\\dataaccess\\basedao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EA416BF3-4B17-4AFB-8ED0-820DC992F730}|ETC.EPAY.Integration.Backend\\ETC.EPAY.Integration.Backend.csproj|solutionrelative:etc.epay.integration.backend\\dataaccess\\basedao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EA416BF3-4B17-4AFB-8ED0-820DC992F730}|ETC.EPAY.Integration.Backend\\ETC.EPAY.Integration.Backend.csproj|c:\\users\\chaung\\source\\repos\\etc.epay.integration.backend\\etc.epay.integration.backend\\controllers\\weatherforecastcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EA416BF3-4B17-4AFB-8ED0-820DC992F730}|ETC.EPAY.Integration.Backend\\ETC.EPAY.Integration.Backend.csproj|solutionrelative:etc.epay.integration.backend\\controllers\\weatherforecastcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EA416BF3-4B17-4AFB-8ED0-820DC992F730}|ETC.EPAY.Integration.Backend\\ETC.EPAY.Integration.Backend.csproj|c:\\users\\chaung\\source\\repos\\etc.epay.integration.backend\\etc.epay.integration.backend\\services\\baseservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EA416BF3-4B17-4AFB-8ED0-820DC992F730}|ETC.EPAY.Integration.Backend\\ETC.EPAY.Integration.Backend.csproj|solutionrelative:etc.epay.integration.backend\\services\\baseservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EA416BF3-4B17-4AFB-8ED0-820DC992F730}|ETC.EPAY.Integration.Backend\\ETC.EPAY.Integration.Backend.csproj|c:\\users\\chaung\\source\\repos\\etc.epay.integration.backend\\etc.epay.integration.backend\\extensions\\relatetext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EA416BF3-4B17-4AFB-8ED0-820DC992F730}|ETC.EPAY.Integration.Backend\\ETC.EPAY.Integration.Backend.csproj|solutionrelative:etc.epay.integration.backend\\extensions\\relatetext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EA416BF3-4B17-4AFB-8ED0-820DC992F730}|ETC.EPAY.Integration.Backend\\ETC.EPAY.Integration.Backend.csproj|c:\\users\\chaung\\source\\repos\\etc.epay.integration.backend\\etc.epay.integration.backend\\extensions\\encryptionhelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EA416BF3-4B17-4AFB-8ED0-820DC992F730}|ETC.EPAY.Integration.Backend\\ETC.EPAY.Integration.Backend.csproj|solutionrelative:etc.epay.integration.backend\\extensions\\encryptionhelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 4,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "IPaymentService.cs",
+              "DocumentMoniker": "C:\\Users\\chaung\\source\\repos\\ETC.EPAY.Integration.Backend\\ETC.EPAY.Integration.Backend\\Services\\Payment\\IPaymentService.cs",
+              "RelativeDocumentMoniker": "ETC.EPAY.Integration.Backend\\Services\\Payment\\IPaymentService.cs",
+              "ToolTip": "C:\\Users\\chaung\\source\\repos\\ETC.EPAY.Integration.Backend\\ETC.EPAY.Integration.Backend\\Services\\Payment\\IPaymentService.cs",
+              "RelativeToolTip": "ETC.EPAY.Integration.Backend\\Services\\Payment\\IPaymentService.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAArwBQAAAB3AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-03T07:29:29.302Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "PayGwRequest.cs",
+              "DocumentMoniker": "C:\\Users\\chaung\\source\\repos\\ETC.EPAY.Integration.Backend\\ETC.EPAY.Integration.Backend\\Request\\PayGwRequest.cs",
+              "RelativeDocumentMoniker": "ETC.EPAY.Integration.Backend\\Request\\PayGwRequest.cs",
+              "ToolTip": "C:\\Users\\chaung\\source\\repos\\ETC.EPAY.Integration.Backend\\ETC.EPAY.Integration.Backend\\Request\\PayGwRequest.cs",
+              "RelativeToolTip": "ETC.EPAY.Integration.Backend\\Request\\PayGwRequest.cs",
+              "ViewState": "AgIAAA0AAAAAAAAAAAA1wBcAAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-03T06:16:57.788Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "PaymentService.cs",
+              "DocumentMoniker": "C:\\Users\\chaung\\source\\repos\\ETC.EPAY.Integration.Backend\\ETC.EPAY.Integration.Backend\\Services\\Payment\\PaymentService.cs",
+              "RelativeDocumentMoniker": "ETC.EPAY.Integration.Backend\\Services\\Payment\\PaymentService.cs",
+              "ToolTip": "C:\\Users\\chaung\\source\\repos\\ETC.EPAY.Integration.Backend\\ETC.EPAY.Integration.Backend\\Services\\Payment\\PaymentService.cs",
+              "RelativeToolTip": "ETC.EPAY.Integration.Backend\\Services\\Payment\\PaymentService.cs",
+              "ViewState": "AgIAAE4AAAAAAAAAAADgv1oAAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-03T01:35:04.276Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "IPayGwService.cs",
+              "DocumentMoniker": "C:\\Users\\chaung\\source\\repos\\ETC.EPAY.Integration.Backend\\ETC.EPAY.Integration.Backend\\Services\\PaymentGateway\\IPayGwService.cs",
+              "RelativeDocumentMoniker": "ETC.EPAY.Integration.Backend\\Services\\PaymentGateway\\IPayGwService.cs",
+              "ToolTip": "C:\\Users\\chaung\\source\\repos\\ETC.EPAY.Integration.Backend\\ETC.EPAY.Integration.Backend\\Services\\PaymentGateway\\IPayGwService.cs",
+              "RelativeToolTip": "ETC.EPAY.Integration.Backend\\Services\\PaymentGateway\\IPayGwService.cs",
+              "ViewState": "AgIAABEAAAAAAAAAAAAIwBgAAABgAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-03T02:23:42.563Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "IUnitOfWorkContext.cs",
+              "DocumentMoniker": "C:\\Users\\chaung\\source\\repos\\ETC.EPAY.Integration.Backend\\ETC.EPAY.Integration.Backend\\DataAccess\\UnitOfWork\\IUnitOfWorkContext.cs",
+              "RelativeDocumentMoniker": "ETC.EPAY.Integration.Backend\\DataAccess\\UnitOfWork\\IUnitOfWorkContext.cs",
+              "ToolTip": "C:\\Users\\chaung\\source\\repos\\ETC.EPAY.Integration.Backend\\ETC.EPAY.Integration.Backend\\DataAccess\\UnitOfWork\\IUnitOfWorkContext.cs",
+              "RelativeToolTip": "ETC.EPAY.Integration.Backend\\DataAccess\\UnitOfWork\\IUnitOfWorkContext.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAqwAwAAAAVAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-03T01:30:43.77Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "BaseDAO.cs",
+              "DocumentMoniker": "C:\\Users\\chaung\\source\\repos\\ETC.EPAY.Integration.Backend\\ETC.EPAY.Integration.Backend\\DataAccess\\BaseDAO.cs",
+              "RelativeDocumentMoniker": "ETC.EPAY.Integration.Backend\\DataAccess\\BaseDAO.cs",
+              "ToolTip": "C:\\Users\\chaung\\source\\repos\\ETC.EPAY.Integration.Backend\\ETC.EPAY.Integration.Backend\\DataAccess\\BaseDAO.cs",
+              "RelativeToolTip": "ETC.EPAY.Integration.Backend\\DataAccess\\BaseDAO.cs",
+              "ViewState": "AgIAAA0AAAAAAAAAAAAswBoAAAAaAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-03T01:30:11.012Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "PaymentLogQuery.cs",
+              "DocumentMoniker": "C:\\Users\\chaung\\source\\repos\\ETC.EPAY.Integration.Backend\\ETC.EPAY.Integration.Backend\\DataAccess\\PaymentLog\\PaymentLogQuery.cs",
+              "RelativeDocumentMoniker": "ETC.EPAY.Integration.Backend\\DataAccess\\PaymentLog\\PaymentLogQuery.cs",
+              "ToolTip": "C:\\Users\\chaung\\source\\repos\\ETC.EPAY.Integration.Backend\\ETC.EPAY.Integration.Backend\\DataAccess\\PaymentLog\\PaymentLogQuery.cs",
+              "RelativeToolTip": "ETC.EPAY.Integration.Backend\\DataAccess\\PaymentLog\\PaymentLogQuery.cs",
+              "ViewState": "AgIAAJsAAAAAAAAAAAASwJkAAAAgAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-03T01:30:40.073Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "PayGwService.cs",
+              "DocumentMoniker": "C:\\Users\\chaung\\source\\repos\\ETC.EPAY.Integration.Backend\\ETC.EPAY.Integration.Backend\\Services\\PaymentGateway\\PayGwService.cs",
+              "RelativeDocumentMoniker": "ETC.EPAY.Integration.Backend\\Services\\PaymentGateway\\PayGwService.cs",
+              "ToolTip": "C:\\Users\\chaung\\source\\repos\\ETC.EPAY.Integration.Backend\\ETC.EPAY.Integration.Backend\\Services\\PaymentGateway\\PayGwService.cs",
+              "RelativeToolTip": "ETC.EPAY.Integration.Backend\\Services\\PaymentGateway\\PayGwService.cs",
+              "ViewState": "AgIAAIQAAAAAAAAAAADgv5QAAAAQAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-03T01:32:00.624Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "PaymentLog.cs",
+              "DocumentMoniker": "C:\\Users\\chaung\\source\\repos\\ETC.EPAY.Integration.Backend\\ETC.EPAY.Integration.Backend\\Models\\PaymentLog.cs",
+              "RelativeDocumentMoniker": "ETC.EPAY.Integration.Backend\\Models\\PaymentLog.cs",
+              "ToolTip": "C:\\Users\\chaung\\source\\repos\\ETC.EPAY.Integration.Backend\\ETC.EPAY.Integration.Backend\\Models\\PaymentLog.cs",
+              "RelativeToolTip": "ETC.EPAY.Integration.Backend\\Models\\PaymentLog.cs",
+              "ViewState": "AgIAABYAAAAAAAAAAAA1wCIAAAAaAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-03T03:47:59.534Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "PaymentController.cs",
+              "DocumentMoniker": "C:\\Users\\chaung\\source\\repos\\ETC.EPAY.Integration.Backend\\ETC.EPAY.Integration.Backend\\Controllers\\PaymentController.cs",
+              "RelativeDocumentMoniker": "ETC.EPAY.Integration.Backend\\Controllers\\PaymentController.cs",
+              "ToolTip": "C:\\Users\\chaung\\source\\repos\\ETC.EPAY.Integration.Backend\\ETC.EPAY.Integration.Backend\\Controllers\\PaymentController.cs",
+              "RelativeToolTip": "ETC.EPAY.Integration.Backend\\Controllers\\PaymentController.cs",
+              "ViewState": "AgIAABMAAAAAAAAAAAAUwBYAAAAdAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-03T01:33:48.101Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "UnitOfWorkContext.cs",
+              "DocumentMoniker": "C:\\Users\\chaung\\source\\repos\\ETC.EPAY.Integration.Backend\\ETC.EPAY.Integration.Backend\\DataAccess\\UnitOfWork\\UnitOfWorkContext.cs",
+              "RelativeDocumentMoniker": "ETC.EPAY.Integration.Backend\\DataAccess\\UnitOfWork\\UnitOfWorkContext.cs",
+              "ToolTip": "C:\\Users\\chaung\\source\\repos\\ETC.EPAY.Integration.Backend\\ETC.EPAY.Integration.Backend\\DataAccess\\UnitOfWork\\UnitOfWorkContext.cs",
+              "RelativeToolTip": "ETC.EPAY.Integration.Backend\\DataAccess\\UnitOfWork\\UnitOfWorkContext.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAqwBcAAAAgAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-03T01:30:45.981Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "PaymentLogDAO.cs",
+              "DocumentMoniker": "C:\\Users\\chaung\\source\\repos\\ETC.EPAY.Integration.Backend\\ETC.EPAY.Integration.Backend\\DataAccess\\PaymentLogDAO.cs",
+              "RelativeDocumentMoniker": "ETC.EPAY.Integration.Backend\\DataAccess\\PaymentLogDAO.cs",
+              "ToolTip": "C:\\Users\\chaung\\source\\repos\\ETC.EPAY.Integration.Backend\\ETC.EPAY.Integration.Backend\\DataAccess\\PaymentLogDAO.cs",
+              "RelativeToolTip": "ETC.EPAY.Integration.Backend\\DataAccess\\PaymentLogDAO.cs",
+              "ViewState": "AgIAADYAAAAAAAAAAAAIwEcAAAAQAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-03T07:06:28.054Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "PayGwHelper.cs",
+              "DocumentMoniker": "C:\\Users\\chaung\\source\\repos\\ETC.EPAY.Integration.Backend\\ETC.EPAY.Integration.Backend\\Extensions\\PayGwHelper.cs",
+              "RelativeDocumentMoniker": "ETC.EPAY.Integration.Backend\\Extensions\\PayGwHelper.cs",
+              "ToolTip": "C:\\Users\\chaung\\source\\repos\\ETC.EPAY.Integration.Backend\\ETC.EPAY.Integration.Backend\\Extensions\\PayGwHelper.cs",
+              "RelativeToolTip": "ETC.EPAY.Integration.Backend\\Extensions\\PayGwHelper.cs",
+              "ViewState": "AgIAAAIAAAAAAAAAAAAUwBEAAAArAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-03T07:47:14.945Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "IUnitOfWork.cs",
+              "DocumentMoniker": "C:\\Users\\chaung\\source\\repos\\ETC.EPAY.Integration.Backend\\ETC.EPAY.Integration.Backend\\DataAccess\\UnitOfWork\\IUnitOfWork.cs",
+              "RelativeDocumentMoniker": "ETC.EPAY.Integration.Backend\\DataAccess\\UnitOfWork\\IUnitOfWork.cs",
+              "ToolTip": "C:\\Users\\chaung\\source\\repos\\ETC.EPAY.Integration.Backend\\ETC.EPAY.Integration.Backend\\DataAccess\\UnitOfWork\\IUnitOfWork.cs",
+              "RelativeToolTip": "ETC.EPAY.Integration.Backend\\DataAccess\\UnitOfWork\\IUnitOfWork.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-03T02:57:42.225Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "IPaymentLogDAO.cs",
+              "DocumentMoniker": "C:\\Users\\chaung\\source\\repos\\ETC.EPAY.Integration.Backend\\ETC.EPAY.Integration.Backend\\DataAccess\\IPaymentLogDAO.cs",
+              "RelativeDocumentMoniker": "ETC.EPAY.Integration.Backend\\DataAccess\\IPaymentLogDAO.cs",
+              "ToolTip": "C:\\Users\\chaung\\source\\repos\\ETC.EPAY.Integration.Backend\\ETC.EPAY.Integration.Backend\\DataAccess\\IPaymentLogDAO.cs",
+              "RelativeToolTip": "ETC.EPAY.Integration.Backend\\DataAccess\\IPaymentLogDAO.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-03T07:17:31.24Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "UnitOfWork.cs",
+              "DocumentMoniker": "C:\\Users\\chaung\\source\\repos\\ETC.EPAY.Integration.Backend\\ETC.EPAY.Integration.Backend\\DataAccess\\UnitOfWork\\UnitOfWork.cs",
+              "RelativeDocumentMoniker": "ETC.EPAY.Integration.Backend\\DataAccess\\UnitOfWork\\UnitOfWork.cs",
+              "ToolTip": "C:\\Users\\chaung\\source\\repos\\ETC.EPAY.Integration.Backend\\ETC.EPAY.Integration.Backend\\DataAccess\\UnitOfWork\\UnitOfWork.cs",
+              "RelativeToolTip": "ETC.EPAY.Integration.Backend\\DataAccess\\UnitOfWork\\UnitOfWork.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-03T02:57:45.679Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "BaseService.cs",
+              "DocumentMoniker": "C:\\Users\\chaung\\source\\repos\\ETC.EPAY.Integration.Backend\\ETC.EPAY.Integration.Backend\\Services\\BaseService.cs",
+              "RelativeDocumentMoniker": "ETC.EPAY.Integration.Backend\\Services\\BaseService.cs",
+              "ToolTip": "C:\\Users\\chaung\\source\\repos\\ETC.EPAY.Integration.Backend\\ETC.EPAY.Integration.Backend\\Services\\BaseService.cs",
+              "RelativeToolTip": "ETC.EPAY.Integration.Backend\\Services\\BaseService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAGAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-03T01:31:49.949Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "EncryptionHelper.cs",
+              "DocumentMoniker": "C:\\Users\\chaung\\source\\repos\\ETC.EPAY.Integration.Backend\\ETC.EPAY.Integration.Backend\\Extensions\\EncryptionHelper.cs",
+              "RelativeDocumentMoniker": "ETC.EPAY.Integration.Backend\\Extensions\\EncryptionHelper.cs",
+              "ToolTip": "C:\\Users\\chaung\\source\\repos\\ETC.EPAY.Integration.Backend\\ETC.EPAY.Integration.Backend\\Extensions\\EncryptionHelper.cs",
+              "RelativeToolTip": "ETC.EPAY.Integration.Backend\\Extensions\\EncryptionHelper.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAGAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-03T01:30:47.344Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "WeatherForecastController.cs",
+              "DocumentMoniker": "C:\\Users\\chaung\\source\\repos\\ETC.EPAY.Integration.Backend\\ETC.EPAY.Integration.Backend\\Controllers\\WeatherForecastController.cs",
+              "RelativeDocumentMoniker": "ETC.EPAY.Integration.Backend\\Controllers\\WeatherForecastController.cs",
+              "ToolTip": "C:\\Users\\chaung\\source\\repos\\ETC.EPAY.Integration.Backend\\ETC.EPAY.Integration.Backend\\Controllers\\WeatherForecastController.cs",
+              "RelativeToolTip": "ETC.EPAY.Integration.Backend\\Controllers\\WeatherForecastController.cs",
+              "ViewState": "AgIAAAsAAAAAAAAAAAAQwB4AAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-03T01:33:16.02Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "RelateText.cs",
+              "DocumentMoniker": "C:\\Users\\chaung\\source\\repos\\ETC.EPAY.Integration.Backend\\ETC.EPAY.Integration.Backend\\Extensions\\RelateText.cs",
+              "RelativeDocumentMoniker": "ETC.EPAY.Integration.Backend\\Extensions\\RelateText.cs",
+              "ToolTip": "C:\\Users\\chaung\\source\\repos\\ETC.EPAY.Integration.Backend\\ETC.EPAY.Integration.Backend\\Extensions\\RelateText.cs",
+              "RelativeToolTip": "ETC.EPAY.Integration.Backend\\Extensions\\RelateText.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAdAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-03T01:31:06.8Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

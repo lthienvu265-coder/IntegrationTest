@@ -1,0 +1,231 @@
+[
+  {
+    "ContainingType": "ETC.EPAY.Integration.Backend.Controllers.PaymentController",
+    "Method": "CheckRefundStatus",
+    "RelativePath": "Payment/check_refund_status",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "ETC.EPAY.Integration.Request.PayGwCheckRefundStatusRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "ETC.EPAY.Integration.Results.BaseResult\u00601[[ETC.EPAY.Integration.Response.PayGwCheckRefundStatusResponse, ETC.EPAY.Integration.Backend, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "ETC.EPAY.Integration.Backend.Controllers.PaymentController",
+    "Method": "CheckStatus",
+    "RelativePath": "Payment/check_status",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "ETC.EPAY.Integration.Request.PayGwCheckOrderStatusDataRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "ETC.EPAY.Integration.Results.BaseResult\u00601[[ETC.EPAY.Integration.Response.PayGwOrderStatusDataResponse, ETC.EPAY.Integration.Backend, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "ETC.EPAY.Integration.Backend.Controllers.PaymentController",
+    "Method": "CreatePayment",
+    "RelativePath": "Payment/create_payment",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "ETC.EPAY.Integration.Request.PayGwCreateOrderDataRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "ETC.EPAY.Integration.Results.BaseResult\u00601[[ETC.EPAY.Integration.Response.PayGwOrderDataResponse, ETC.EPAY.Integration.Backend, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "ETC.EPAY.Integration.Backend.Controllers.PaymentController",
+    "Method": "DeleteToken",
+    "RelativePath": "Payment/delete_token",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "ETC.EPAY.Integration.Request.PayGwDeleteTokenRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "ETC.EPAY.Integration.Results.BaseResult\u00601[[ETC.EPAY.Integration.Response.PayGwDeleteTokenResponse, ETC.EPAY.Integration.Backend, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "ETC.EPAY.Integration.Backend.Controllers.PaymentController",
+    "Method": "RefundCallback",
+    "RelativePath": "Payment/get_ipn_refund_result",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "ETC.EPAY.Integration.Response.PayGwResponse\u00601[[ETC.EPAY.Integration.Request.PayGwIpnPayGatewayRefundRequest, ETC.EPAY.Integration.Backend, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "ETC.EPAY.Integration.Results.BaseResult\u00601[[System.Boolean, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "ETC.EPAY.Integration.Backend.Controllers.PaymentController",
+    "Method": "CreateOrderCallback",
+    "RelativePath": "Payment/get_ipn_transfer_result",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "ETC.EPAY.Integration.Response.PayGwResponse\u00601[[ETC.EPAY.Integration.Request.PayGwIpnPayGatewayRequest, ETC.EPAY.Integration.Backend, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "ETC.EPAY.Integration.Results.BaseResult\u00601[[System.Boolean, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "ETC.EPAY.Integration.Backend.Controllers.PaymentController",
+    "Method": "Refund",
+    "RelativePath": "Payment/refund",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "ETC.EPAY.Integration.Request.PayGwRefundRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "ETC.EPAY.Integration.Results.BaseResult\u00601[[ETC.EPAY.Integration.Response.PayGwRefundResponse, ETC.EPAY.Integration.Backend, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "ETC.EPAY.Integration.Backend.Controllers.PaymentController",
+    "Method": "RetrieveToken",
+    "RelativePath": "Payment/retrieve_token",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "ETC.EPAY.Integration.Request.PayGwRetrieveTokenRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "ETC.EPAY.Integration.Results.BaseResult\u00601[[ETC.EPAY.Integration.Response.PayGwRetrieveTokenResponse, ETC.EPAY.Integration.Backend, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "ETC.EPAY.Integration.Backend.Controllers.WeatherForecastController",
+    "Method": "Get",
+    "RelativePath": "WeatherForecast",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[ETC.EPAY.Integration.Backend.WeatherForecast, ETC.EPAY.Integration.Backend, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ],
+    "EndpointName": "GetWeatherForecast"
+  }
+]
