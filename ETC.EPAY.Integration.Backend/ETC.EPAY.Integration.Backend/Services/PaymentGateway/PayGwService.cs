@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using ETC.EPAY.Integration.Backend;
 using ETC.EPAY.Integration.DataAccess;
 using ETC.EPAY.Integration.DataAccess.UnitOfWork;
 using ETC.EPAY.Integration.Extensions;
@@ -18,6 +19,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http.Json;
+using System.Net.WebSockets;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
@@ -39,9 +41,10 @@ namespace ETC.EPAY.Integration.Services.PaymentGateway
         private IPaymentLogDAO _paymentLogDAO;
         private IUnitOfWork _unitOfWork;
         private int _kioskExpiredSeconds;
+        private readonly WebSocketConnectionManager _wsManager;
         protected readonly ResponseMessage ResponseMessage = new ResponseMessage();
 
-        public PayGwService(string baseAddress, string merchantCode, string merchantUser, string merchantPassword, string privateKey, string secretKey, IPaymentLogDAO paymentLogDAO)
+        public PayGwService(string baseAddress, string merchantCode, string merchantUser, string merchantPassword, string privateKey, string secretKey, IPaymentLogDAO paymentLogDAO, WebSocketConnectionManager wsManager)
         {
             _baseAddress = baseAddress;
             _merchantCode = merchantCode;
@@ -50,6 +53,7 @@ namespace ETC.EPAY.Integration.Services.PaymentGateway
             _privateKey = privateKey;
             _secretKey = secretKey;
             _paymentLogDAO = paymentLogDAO;
+            _wsManager = wsManager;
         }
 
         private BaseResult<Inner> GetBaseResult<Inner>(CodeMessage statusCode, Inner data = default, StatusEnum status = StatusEnum.Success, string message = "")
@@ -384,6 +388,33 @@ namespace ETC.EPAY.Integration.Services.PaymentGateway
             }
 
             await _unitOfWork.SaveChangesAsync();
+
+            // 🔥 Send message to all WebSocket clients
+            var payload = new
+            {
+                SocketId = paymentLog.PosId,
+                OrderCode = paymentLog.OrderId,
+                Status = paymentLog.PartnerPaymentStatus.ToString()
+            };
+
+            var json = System.Text.Json.JsonSerializer.Serialize(payload);
+            var bytes = System.Text.Encoding.UTF8.GetBytes(json);
+
+            foreach (var socket in _wsManager.GetAllSockets())
+            {
+                if (socket.Key == payload.SocketId)
+                {
+                    if (socket.Value.State == WebSocketState.Open)
+                    {
+                        await socket.Value.SendAsync(
+                            bytes,
+                            WebSocketMessageType.Text,
+                            endOfMessage: true,
+                            cancellationToken: CancellationToken.None
+                        );
+                    }
+                }
+            }
 
             // Process result
             return GetBaseResult(CodeMessage._200,

@@ -1,8 +1,10 @@
+using ETC.EPAY.Integration.Backend;
 using ETC.EPAY.Integration.DataAccess;
 using ETC.EPAY.Integration.DataAccess.UnitOfWork;
 using ETC.EPAY.Integration.Services.Payment;
 using ETC.EPAY.Integration.Services.PaymentGateway;
 using Microsoft.Extensions.Configuration;
+using System.Net.WebSockets;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -24,6 +26,7 @@ builder.Services.AddScoped<IPayGwService>(provider =>
     var secretKey = "0123456789ABCDEF76543210";
 
     var paymentLogDAO = provider.GetRequiredService<IPaymentLogDAO>();
+    var webSocketConnectionManager = provider.GetRequiredService<WebSocketConnectionManager>();
 
     return new PayGwService(
         baseAddress,
@@ -32,7 +35,8 @@ builder.Services.AddScoped<IPayGwService>(provider =>
         merchantPassword,
         privateKey,
         secretKey,
-        paymentLogDAO
+        paymentLogDAO,
+        webSocketConnectionManager
     );
 });
 
@@ -45,6 +49,31 @@ builder.Services.AddScoped<IUnitOfWorkContext>(provider =>
 builder.Services.AddOpenApi();
 
 var app = builder.Build();
+
+app.UseWebSockets();
+app.Map("/ws", async (HttpContext context, WebSocketConnectionManager manager) =>
+{
+    if (context.WebSockets.IsWebSocketRequest)
+    {
+        var socket = await context.WebSockets.AcceptWebSocketAsync();
+
+        var socketId = Guid.NewGuid().ToString();
+        manager.AddSocket(socketId, socket);
+        Console.WriteLine($"Client connected: {socketId}");
+
+        var buffer = new byte[1024];
+        while (socket.State == WebSocketState.Open)
+        {
+            var result = await socket.ReceiveAsync(buffer, CancellationToken.None);
+
+            if (result.MessageType == WebSocketMessageType.Close)
+            {
+                await manager.RemoveSocketAsync(socketId);
+            }
+        }
+
+    }    
+});
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
