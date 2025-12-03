@@ -1,14 +1,14 @@
 {
   "version": 2,
-  "dgSpecHash": "aa2igDuMSqg=",
+  "dgSpecHash": "xWZqTWEgMbM=",
   "success": true,
-  "projectFilePath": "C:\\Users\\chaung\\source\\repos\\ETC.EPAY.Integration.Backend\\ETC.EPAY.Integration.Backend\\ETC.EPAY.Integration.Backend.csproj",
+  "projectFilePath": "C:\\Users\\chaung\\Desktop\\New folder (30)\\IntegrationTest\\ETC.EPAY.Integration.Backend\\ETC.EPAY.Integration.Backend\\ETC.EPAY.Integration.Backend.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\chaung\\.nuget\\packages\\automapper\\15.1.0\\automapper.15.1.0.nupkg.sha512",
     "C:\\Users\\chaung\\.nuget\\packages\\dapper\\2.1.66\\dapper.2.1.66.nupkg.sha512",
     "C:\\Users\\chaung\\.nuget\\packages\\microsoft.aspnetcore.openapi\\9.0.9\\microsoft.aspnetcore.openapi.9.0.9.nupkg.sha512",
-    "C:\\Users\\chaung\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\9.0.0\\microsoft.extensions.dependencyinjection.abstractions.9.0.0.nupkg.sha512",
-    "C:\\Users\\chaung\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\9.0.0\\microsoft.extensions.logging.abstractions.9.0.0.nupkg.sha512",
+    "C:\\Users\\chaung\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\10.0.0\\microsoft.extensions.dependencyinjection.abstractions.10.0.0.nupkg.sha512",
+    "C:\\Users\\chaung\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\10.0.0\\microsoft.extensions.logging.abstractions.10.0.0.nupkg.sha512",
     "C:\\Users\\chaung\\.nuget\\packages\\microsoft.extensions.options\\8.0.0\\microsoft.extensions.options.8.0.0.nupkg.sha512",
     "C:\\Users\\chaung\\.nuget\\packages\\microsoft.extensions.primitives\\8.0.0\\microsoft.extensions.primitives.8.0.0.nupkg.sha512",
     "C:\\Users\\chaung\\.nuget\\packages\\microsoft.identitymodel.abstractions\\8.14.0\\microsoft.identitymodel.abstractions.8.14.0.nupkg.sha512",
@@ -34,13 +34,13 @@
     {
       "code": "NU1701",
       "level": "Warning",
-      "message": "Package 'Oracle.ManagedDataAccess 23.26.0' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' instead of the project target framework 'net9.0'. This package may not be fully compatible with your project.",
-      "projectPath": "C:\\Users\\chaung\\source\\repos\\ETC.EPAY.Integration.Backend\\ETC.EPAY.Integration.Backend\\ETC.EPAY.Integration.Backend.csproj",
+      "message": "Package 'Oracle.ManagedDataAccess 23.26.0' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' instead of the project target framework 'net10.0'. This package may not be fully compatible with your project.",
+      "projectPath": "C:\\Users\\chaung\\Desktop\\New folder (30)\\IntegrationTest\\ETC.EPAY.Integration.Backend\\ETC.EPAY.Integration.Backend\\ETC.EPAY.Integration.Backend.csproj",
       "warningLevel": 1,
-      "filePath": "C:\\Users\\chaung\\source\\repos\\ETC.EPAY.Integration.Backend\\ETC.EPAY.Integration.Backend\\ETC.EPAY.Integration.Backend.csproj",
+      "filePath": "C:\\Users\\chaung\\Desktop\\New folder (30)\\IntegrationTest\\ETC.EPAY.Integration.Backend\\ETC.EPAY.Integration.Backend\\ETC.EPAY.Integration.Backend.csproj",
       "libraryId": "Oracle.ManagedDataAccess",
       "targetGraphs": [
-        "net9.0"
+        "net10.0"
       ]
     }
   ]
