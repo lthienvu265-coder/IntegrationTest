@@ -105,6 +105,26 @@
   },
   {
     "ContainingType": "ETC.EPAY.Integration.Backend.Controllers.PaymentController",
+    "Method": "GenerateTokenSocket",
+    "RelativePath": "Payment/generate_token",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "ETC.EPAY.Integration.Results.BaseResult\u00601[[System.Guid, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "ETC.EPAY.Integration.Backend.Controllers.PaymentController",
     "Method": "RefundCallback",
     "RelativePath": "Payment/get_ipn_refund_result",
     "HttpMethod": "POST",

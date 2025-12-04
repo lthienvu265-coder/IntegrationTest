@@ -16,18 +16,12 @@ namespace ETC.EPAY.Integration.Request
         public string TransCode { get; set; }
         public PaymentType PaymentMethod { get; set; }
         public PayGwStatus TransStatus { get; set; }
-        public string Token { get; set; }
         public string CardNumber { get; set; }
         public string PartnerCode { get; set; }
         public PayGwErrorCode ErrorCode { get; set; }
         public string ErrorDesc { get; set; }
         public string InvoiceUrl { get; set; }
+        public string Token { get; set; }
         public string Type { get; set; }
-        public string Signature { get; set; }
-        public string Data { get; set; }
-        public bool VerifySignature(string publicKey, string secretKey)
-        {
-            return $"{Data}{secretKey}".RsaVerify(Signature, publicKey);
-        }
     }
 }

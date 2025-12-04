@@ -3,7 +3,7 @@ using System.Net.WebSockets;
 
 namespace ETC.EPAY.Integration.Backend
 {
-    public class WebSocketConnectionManager
+    public class WebSocketCreateOrderConnectionManager
     {
         private readonly ConcurrentDictionary<string, WebSocket> _sockets = new();
 

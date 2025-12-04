@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<body>
+<h2>WebSocket Raw Demo</h2>
+<div id="status"></div>
+
+<script>
+    const deviceId = "ABC123";  // You set this dynamically however you want
+    const model = "POS_A";      // Example model
+
+    const socket = new WebSocket(
+        `ws://localhost:5006/ws_createorder?deviceId=${deviceId}&model=${model}`
+    );
+
+    socket.onopen = () => {
+        console.log("Connected");
+    };
+
+    socket.onmessage = (event) => {
+        console.log("Received:", event.data);
+        const data = JSON.parse(event.data);
+
+        document.getElementById("status").innerText =
+            `Order ${data.OrderCode} → ${data.Status}`;
+    };
+
+    socket.onclose = () => {
+        console.log("Closed");
+    };
+</script>
+
+</body>
+</html>

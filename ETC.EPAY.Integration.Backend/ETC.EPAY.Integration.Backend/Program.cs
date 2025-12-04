@@ -11,7 +11,8 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 
 builder.Services.AddControllers();
-
+builder.Services.AddSingleton<WebSocketCreateOrderConnectionManager>();
+builder.Services.AddSingleton<WebSocketRefundConnectionManager>();
 builder.Services.AddScoped<IPaymentService, PaymentService>();
 builder.Services.AddScoped<IPaymentLogDAO, PaymentLogDAO>();
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
@@ -26,7 +27,11 @@ builder.Services.AddScoped<IPayGwService>(provider =>
     var secretKey = "0123456789ABCDEF76543210";
 
     var paymentLogDAO = provider.GetRequiredService<IPaymentLogDAO>();
-    var webSocketConnectionManager = provider.GetRequiredService<WebSocketConnectionManager>();
+    var unitOfWork = provider.GetRequiredService<IUnitOfWork>();
+
+    var webSocketCreateOrderConnectionManager = provider.GetRequiredService<WebSocketCreateOrderConnectionManager>();
+    var webSocketRefundConnectionManager = provider.GetRequiredService<WebSocketRefundConnectionManager>();
+
 
     return new PayGwService(
         baseAddress,
@@ -36,7 +41,9 @@ builder.Services.AddScoped<IPayGwService>(provider =>
         privateKey,
         secretKey,
         paymentLogDAO,
-        webSocketConnectionManager
+        unitOfWork,
+        webSocketCreateOrderConnectionManager,
+        webSocketRefundConnectionManager
     );
 });
 
@@ -51,15 +58,22 @@ builder.Services.AddOpenApi();
 var app = builder.Build();
 
 app.UseWebSockets();
-app.Map("/ws", async (HttpContext context, WebSocketConnectionManager manager) =>
+app.Map("/ws_createorder", async (HttpContext context, WebSocketCreateOrderConnectionManager manager) =>
 {
+    var query = context.Request.Query;
+    string deviceId = query["deviceId"];
+    string model = query["model"];
+
+    if (string.IsNullOrEmpty(deviceId))
+        deviceId = Guid.NewGuid().ToString(); // fallback
+
     if (context.WebSockets.IsWebSocketRequest)
     {
         var socket = await context.WebSockets.AcceptWebSocketAsync();
 
-        var socketId = Guid.NewGuid().ToString();
-        manager.AddSocket(socketId, socket);
-        Console.WriteLine($"Client connected: {socketId}");
+        manager.AddSocket(deviceId, socket);
+
+        Console.WriteLine($"Client Create Order connected: {deviceId}, Model: {model}");
 
         var buffer = new byte[1024];
         while (socket.State == WebSocketState.Open)
@@ -67,12 +81,37 @@ app.Map("/ws", async (HttpContext context, WebSocketConnectionManager manager) =
             var result = await socket.ReceiveAsync(buffer, CancellationToken.None);
 
             if (result.MessageType == WebSocketMessageType.Close)
-            {
-                await manager.RemoveSocketAsync(socketId);
-            }
+                await manager.RemoveSocketAsync(deviceId);
         }
+    }
+});
 
-    }    
+app.Map("/ws_refund", async (HttpContext context, WebSocketRefundConnectionManager manager) =>
+{
+    var query = context.Request.Query;
+    string deviceId = query["deviceId"];
+    string model = query["model"];
+
+    if (string.IsNullOrEmpty(deviceId))
+        deviceId = Guid.NewGuid().ToString(); // fallback
+
+    if (context.WebSockets.IsWebSocketRequest)
+    {
+        var socket = await context.WebSockets.AcceptWebSocketAsync();
+
+        manager.AddSocket(deviceId, socket);
+
+        Console.WriteLine($"Client Refund connected: {deviceId}, Model: {model}");
+
+        var buffer = new byte[1024];
+        while (socket.State == WebSocketState.Open)
+        {
+            var result = await socket.ReceiveAsync(buffer, CancellationToken.None);
+
+            if (result.MessageType == WebSocketMessageType.Close)
+                await manager.RemoveSocketAsync(deviceId);
+        }
+    }
 });
 
 // Configure the HTTP request pipeline.
@@ -80,9 +119,6 @@ if (app.Environment.IsDevelopment())
 {
     app.MapOpenApi();
 }
-
-app.UseHttpsRedirection();
-
 app.UseAuthorization();
 
 app.MapControllers();

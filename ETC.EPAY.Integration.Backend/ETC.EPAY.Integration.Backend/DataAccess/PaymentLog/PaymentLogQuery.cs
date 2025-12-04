@@ -89,49 +89,49 @@ namespace ETC.EPAY.Integration.DataAccess.PaymentLog
             // Param component
             var param = new DynamicParameters();
             param.Add("@id", model.Id, dbType: DbType.String, direction: ParameterDirection.Input);
-            param.Add("@clientIp", model.ClientIp, dbType: DbType.String, direction: ParameterDirection.Input);
-            param.Add("@traceId", model.TraceId, dbType: DbType.String, direction: ParameterDirection.Input);
+            param.Add("@clientIp", model.client_ip, dbType: DbType.String, direction: ParameterDirection.Input);
+            param.Add("@traceId", model.trace_id, dbType: DbType.String, direction: ParameterDirection.Input);
             param.Add("@createdDatetimeUtc", DateTime.UtcNow, dbType: DbType.DateTime,
                 direction: ParameterDirection.Input);
             param.Add("@updatedDatetimeUtc", DateTime.UtcNow, dbType: DbType.DateTime,
                 direction: ParameterDirection.Input);
 
-            param.Add("@paymentType", model.PaymentType, dbType: DbType.Int32, direction: ParameterDirection.Input);
-            param.Add("@requestDatetimeUtc", model.RequestDatetimeUtc, dbType: DbType.DateTime,
+            param.Add("@paymentType", model.payment_type, dbType: DbType.Int32, direction: ParameterDirection.Input);
+            param.Add("@requestDatetimeUtc", model.request_datetime_utc, dbType: DbType.DateTime,
                 direction: ParameterDirection.Input);
-            param.Add("@partnerTransactionId", model.PartnerTransactionId, dbType: DbType.String,
+            param.Add("@partnerTransactionId", model.partner_transaction_id, dbType: DbType.String,
                 direction: ParameterDirection.Input);
-            param.Add("@partnerPaymentStatus", model.PartnerPaymentStatus, dbType: DbType.Int32,
+            param.Add("@partnerPaymentStatus", model.partner_payment_status, dbType: DbType.Int32,
                 direction: ParameterDirection.Input);
-            param.Add("@isofhPaymentStatus", model.IsofhPaymentStatus, dbType: DbType.Int32,
+            param.Add("@isofhPaymentStatus", model.isofh_payment_status, dbType: DbType.Int32,
                 direction: ParameterDirection.Input);
-            param.Add("@posId", model.PosId ?? string.Empty, dbType: DbType.String,
+            param.Add("@posId", model.pos_id ?? string.Empty, dbType: DbType.String,
                 direction: ParameterDirection.Input);
-            param.Add("@posIp", model.PosIp ?? string.Empty, dbType: DbType.String,
+            param.Add("@posIp", model.pos_ip ?? string.Empty, dbType: DbType.String,
                 direction: ParameterDirection.Input);
-            param.Add("@deviceId", model.DeviceId, dbType: DbType.String, direction: ParameterDirection.Input);
-            param.Add("@deviceName", model.DeviceName, dbType: DbType.String, direction: ParameterDirection.Input);
-            param.Add("@orderId", model.OrderId, dbType: DbType.String, direction: ParameterDirection.Input);
-            param.Add("@newTotalAmount", model.NewTotalAmount, dbType: DbType.Decimal,
+            param.Add("@deviceId", model.device_id, dbType: DbType.String, direction: ParameterDirection.Input);
+            param.Add("@deviceName", model.device_name, dbType: DbType.String, direction: ParameterDirection.Input);
+            param.Add("@orderId", model.order_id, dbType: DbType.String, direction: ParameterDirection.Input);
+            param.Add("@newTotalAmount", model.new_total_amount, dbType: DbType.Decimal,
                 direction: ParameterDirection.Input);
-            param.Add("@oldTotalAmount", model.OldTotalAmount, dbType: DbType.Decimal,
+            param.Add("@oldTotalAmount", model.old_total_amount, dbType: DbType.Decimal,
                 direction: ParameterDirection.Input);
-            param.Add("@responseDatetimeUtc", model.ResponseDatetimeUtc, dbType: DbType.DateTime,
+            param.Add("@responseDatetimeUtc", model.response_datetime_utc, dbType: DbType.DateTime,
                 direction: ParameterDirection.Input);
-            param.Add("@expiredDatetimeUtc", model.ExpiredDatetimeUtc, dbType: DbType.DateTime,
+            param.Add("@expiredDatetimeUtc", model.expired_datetime_utc, dbType: DbType.DateTime,
                 direction: ParameterDirection.Input);
-            param.Add("@qr", model.Qr ?? string.Empty, dbType: DbType.String, direction: ParameterDirection.Input);
-            param.Add("@paymentFlow", model.PaymentFlow, dbType: DbType.Int32, direction: ParameterDirection.Input);
-            param.Add("@phoneNumber", model.PhoneNumber ?? string.Empty, dbType: DbType.String,
+            param.Add("@qr", model.qr ?? string.Empty, dbType: DbType.String, direction: ParameterDirection.Input);
+            param.Add("@paymentFlow", model.payment_flow, dbType: DbType.Int32, direction: ParameterDirection.Input);
+            param.Add("@phoneNumber", model.phone_number ?? string.Empty, dbType: DbType.String,
                 direction: ParameterDirection.Input);
-            param.Add("@currencyCode", model.CurrencyCode ?? string.Empty, dbType: DbType.String,
+            param.Add("@currencyCode", model.currency_code ?? string.Empty, dbType: DbType.String,
                 direction: ParameterDirection.Input);
 
-            param.Add("@maHoSo", model.MaHoSo, dbType: DbType.String, direction: ParameterDirection.Input);
-            param.Add("@maNb", model.MaNb, dbType: DbType.String, direction: ParameterDirection.Input);
-            param.Add("@maPhieuThu", model.MaPhieuThu, dbType: DbType.String, direction: ParameterDirection.Input);
-            param.Add("@hisRegister", model.HisRegister, dbType: DbType.String, direction: ParameterDirection.Input);
-            param.Add("@paymentUrl", model.PaymentUrl, dbType: DbType.String, direction: ParameterDirection.Input);
+            param.Add("@maHoSo", model.ma_ho_so, dbType: DbType.String, direction: ParameterDirection.Input);
+            param.Add("@maNb", model.ma_nb, dbType: DbType.String, direction: ParameterDirection.Input);
+            param.Add("@maPhieuThu", model.ma_phieu_thu, dbType: DbType.String, direction: ParameterDirection.Input);
+            param.Add("@hisRegister", model.his_register, dbType: DbType.String, direction: ParameterDirection.Input);
+            param.Add("@paymentUrl", model.payment_url, dbType: DbType.String, direction: ParameterDirection.Input);
 
             param.Add("@transactionId", dbType: DbType.Int32, direction: ParameterDirection.Output);
 
@@ -183,7 +183,6 @@ namespace ETC.EPAY.Integration.DataAccess.PaymentLog
 
             // SQL component
             string query = @"SELECT * FROM TBL_PAYMENT_LOG WHERE ORDER_ID = @orderId 
-                    AND PARTNER_PAYMENT_STATUS = 1
                     FETCH FIRST 1 ROW ONLY";
 
             return (query, param);
@@ -207,15 +206,15 @@ namespace ETC.EPAY.Integration.DataAccess.PaymentLog
             // Param component
             var param = new DynamicParameters();
             param.Add("@id", model.Id, dbType: DbType.String, direction: ParameterDirection.Input);
-            param.Add("@partnerPaymentStatus", model.PartnerPaymentStatus, dbType: DbType.Int32,
+            param.Add("@partnerPaymentStatus", model.partner_payment_status, dbType: DbType.Int32,
                 direction: ParameterDirection.Input);
-            param.Add("@isofhPaymentStatus", model.IsofhPaymentStatus, dbType: DbType.Int32,
+            param.Add("@isofhPaymentStatus", model.isofh_payment_status, dbType: DbType.Int32,
                 direction: ParameterDirection.Input);
             param.Add("@updatedDatetimeUtc", DateTime.UtcNow, dbType: DbType.DateTime,
                 direction: ParameterDirection.Input);
-            param.Add("@transactionId", model.TransactionId, dbType: DbType.Int32, direction: ParameterDirection.Input);
-            param.Add("@invoice", model.Invoice, dbType: DbType.String, direction: ParameterDirection.Input);
-            param.Add("@partnerTransactionId", model.PartnerTransactionId, dbType: DbType.String,
+            param.Add("@transactionId", model.transaction_id, dbType: DbType.Int32, direction: ParameterDirection.Input);
+            param.Add("@invoice", model.invoice, dbType: DbType.String, direction: ParameterDirection.Input);
+            param.Add("@partnerTransactionId", model.partner_transaction_id, dbType: DbType.String,
                 direction: ParameterDirection.Input);
 
             // SQL component
@@ -236,7 +235,7 @@ namespace ETC.EPAY.Integration.DataAccess.PaymentLog
             param.Add("@id", model.Id, dbType: DbType.String, direction: ParameterDirection.Input);
             param.Add("@lastRetryDatetimeUtc", DateTime.UtcNow, dbType: DbType.DateTime,
                 direction: ParameterDirection.Input);
-            param.Add("@totalRetry", model.TotalRetry, dbType: DbType.Int32, direction: ParameterDirection.Input);
+            param.Add("@totalRetry", model.total_retry, dbType: DbType.Int32, direction: ParameterDirection.Input);
 
             string query = @"UPDATE TBL_PAYMENT_LOG
                 SET LAST_RETRY_DATETIME_UTC = @lastRetryDatetimeUtc,
@@ -249,7 +248,7 @@ namespace ETC.EPAY.Integration.DataAccess.PaymentLog
         {
             // Param component
             var param = new DynamicParameters();
-            param.Add("@partnerPaymentStatus", model.PartnerPaymentStatus, dbType: DbType.Int32,
+            param.Add("@partnerPaymentStatus", model.partner_payment_status, dbType: DbType.Int32,
                 direction: ParameterDirection.Input);
             param.Add("@id", model.Id, dbType: DbType.String, direction: ParameterDirection.Input);
             param.Add("@createdDatetimeUtc", DateTime.UtcNow, dbType: DbType.DateTime,

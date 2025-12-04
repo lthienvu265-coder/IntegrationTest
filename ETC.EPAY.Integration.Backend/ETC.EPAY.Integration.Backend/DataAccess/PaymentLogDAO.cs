@@ -68,7 +68,7 @@ namespace ETC.EPAY.Integration.DataAccess
             // Process result
             if (result > 0)
             {
-                model.TransactionId = query.param.Get<int>("transactionId");
+                model.transaction_id = query.param.Get<int>("transactionId");
                 return (true, model);
             }
             else
@@ -137,7 +137,7 @@ namespace ETC.EPAY.Integration.DataAccess
                 return false;
             }
 
-            return payment.PartnerPaymentStatus is PaymentStatus.Success or PaymentStatus.Fail;
+            return payment.partner_payment_status is PaymentStatus.Success or PaymentStatus.Fail;
         }
 
         public async Task<(bool isSuccess, Models.PaymentLog data)> CheckPaymentAsync(CheckPaymentRequest request)

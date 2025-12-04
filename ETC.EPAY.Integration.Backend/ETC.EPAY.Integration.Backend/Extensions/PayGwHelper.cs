@@ -12,7 +12,7 @@ namespace ETC.EPAY.Integration.Extensions
     {
         public static string GetPaymentMethod(this PaymentLog paymentLog)
         {
-            return paymentLog.PaymentType switch
+            return paymentLog.payment_type switch
             {
                 PaymentType.QrMobileBanking => "04",
                 PaymentType.QrEpay => "01",

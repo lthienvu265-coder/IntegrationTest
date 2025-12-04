@@ -41,10 +41,11 @@ namespace ETC.EPAY.Integration.Services.PaymentGateway
         private IPaymentLogDAO _paymentLogDAO;
         private IUnitOfWork _unitOfWork;
         private int _kioskExpiredSeconds;
-        private readonly WebSocketConnectionManager _wsManager;
+        private readonly WebSocketCreateOrderConnectionManager _wsManagerCreateOrder;
+        private readonly WebSocketRefundConnectionManager _wsManagerRefund;
         protected readonly ResponseMessage ResponseMessage = new ResponseMessage();
 
-        public PayGwService(string baseAddress, string merchantCode, string merchantUser, string merchantPassword, string privateKey, string secretKey, IPaymentLogDAO paymentLogDAO, WebSocketConnectionManager wsManager)
+        public PayGwService(string baseAddress, string merchantCode, string merchantUser, string merchantPassword, string privateKey, string secretKey, IPaymentLogDAO paymentLogDAO, IUnitOfWork unitOfWork, WebSocketCreateOrderConnectionManager wsManagerCreateOrder, WebSocketRefundConnectionManager wsManagerRefund)
         {
             _baseAddress = baseAddress;
             _merchantCode = merchantCode;
@@ -53,7 +54,9 @@ namespace ETC.EPAY.Integration.Services.PaymentGateway
             _privateKey = privateKey;
             _secretKey = secretKey;
             _paymentLogDAO = paymentLogDAO;
-            _wsManager = wsManager;
+            _unitOfWork = unitOfWork;
+            _wsManagerCreateOrder = wsManagerCreateOrder;
+            _wsManagerRefund = wsManagerRefund;
         }
 
         private BaseResult<Inner> GetBaseResult<Inner>(CodeMessage statusCode, Inner data = default, StatusEnum status = StatusEnum.Success, string message = "")
@@ -306,17 +309,11 @@ namespace ETC.EPAY.Integration.Services.PaymentGateway
             if (paymentLog == null)
                 return GetBaseResult<bool>(CodeMessage._211, status: StatusEnum.Failed);
 
-            // Lưu trạng thái ban đầu trước khi kiểm tra
-            var oldPartnerStatus = paymentLog.PartnerPaymentStatus;
 
-            paymentLog.PartnerTransactionId = payGwReturnUrlRequest.TransCode;
-            if (paymentLog.PartnerPaymentStatus is PaymentStatus.Fail or PaymentStatus.Success)
-            {
-                return GetBaseResult(CodeMessage._200, data: false);
-            }
+            paymentLog.partner_transaction_id = payGwReturnUrlRequest.TransCode;
 
             // Update payment status
-            paymentLog.PartnerPaymentStatus = payGwReturnUrlRequest.TransStatus switch
+            paymentLog.partner_payment_status = payGwReturnUrlRequest.TransStatus switch
             {
                 PayGwStatus.NotPaid => PaymentStatus.Pending,
                 PayGwStatus.Paid => PaymentStatus.Success,
@@ -336,15 +333,11 @@ namespace ETC.EPAY.Integration.Services.PaymentGateway
             await _unitOfWork.SaveChangesAsync();
 
             // Process result
-            return GetBaseResult(CodeMessage._200, data: paymentLog.PartnerPaymentStatus == PaymentStatus.Success ? true : false);
+            return GetBaseResult(CodeMessage._200, data: paymentLog.partner_payment_status == PaymentStatus.Success ? true : false);
         }
 
         public async Task<BaseResult<bool>> CreateOrderCallbackAsync(PayGwResponse<PayGwIpnPayGatewayRequest> request, CancellationToken cancellationToken)
         {
-            if (request.VerifySignature(_publicKey, _secretKey) == false)
-            {
-                return GetBaseResult<bool>(CodeMessage._98, status: StatusEnum.Failed);
-            }
             if (string.IsNullOrEmpty(request.Data))
             {
                 return GetBaseResult<bool>(CodeMessage._98, status: StatusEnum.Failed);
@@ -354,23 +347,16 @@ namespace ETC.EPAY.Integration.Services.PaymentGateway
             if (string.IsNullOrEmpty(createOrderCallbackRequest?.TransCode))
                 return GetBaseResult<bool>(CodeMessage._98, status: StatusEnum.Failed);
 
-            var paymentLog = await _paymentLogDAO.GetByIdAsync(createOrderCallbackRequest.OrderCode);
+            var paidOrderResult = await _paymentLogDAO.GetPaidOrderAsync(createOrderCallbackRequest.OrderCode);
+            var paymentLog = paidOrderResult.data;
 
             // Validate data
             if (paymentLog == null)
                 return GetBaseResult<bool>(CodeMessage._211, status: StatusEnum.Failed);
 
-            // Lưu trạng thái ban đầu trước khi kiểm tra
-            var oldPartnerStatus = paymentLog.PartnerPaymentStatus;
-
-            paymentLog.PartnerTransactionId = createOrderCallbackRequest.TransCode;
-            if (paymentLog.PartnerPaymentStatus is PaymentStatus.Fail or PaymentStatus.Success)
-            {
-                return GetBaseResult(CodeMessage._200, data: false);
-            }
-
+            paymentLog.partner_transaction_id = createOrderCallbackRequest.TransCode;
             // Update payment status
-            paymentLog.PartnerPaymentStatus = createOrderCallbackRequest.TransStatus switch
+            paymentLog.partner_payment_status = createOrderCallbackRequest.TransStatus switch
             {
                 PayGwStatus.NotPaid => PaymentStatus.Pending,
                 PayGwStatus.Paid => PaymentStatus.Success,
@@ -392,15 +378,15 @@ namespace ETC.EPAY.Integration.Services.PaymentGateway
             // 🔥 Send message to all WebSocket clients
             var payload = new
             {
-                SocketId = paymentLog.PosId,
-                OrderCode = paymentLog.OrderId,
-                Status = paymentLog.PartnerPaymentStatus.ToString()
+                SocketId = paymentLog.device_id,
+                OrderCode = paymentLog.order_id,
+                Status = paymentLog.partner_payment_status.ToString()
             };
 
             var json = System.Text.Json.JsonSerializer.Serialize(payload);
             var bytes = System.Text.Encoding.UTF8.GetBytes(json);
 
-            foreach (var socket in _wsManager.GetAllSockets())
+            foreach (var socket in _wsManagerCreateOrder.GetAllSockets())
             {
                 if (socket.Key == payload.SocketId)
                 {
@@ -412,21 +398,18 @@ namespace ETC.EPAY.Integration.Services.PaymentGateway
                             endOfMessage: true,
                             cancellationToken: CancellationToken.None
                         );
+                        break;
                     }
                 }
             }
 
             // Process result
             return GetBaseResult(CodeMessage._200,
-                data: paymentLog.PartnerPaymentStatus == PaymentStatus.Success ? true : false);
+                data: paymentLog.partner_payment_status == PaymentStatus.Success ? true : false);
         }
 
         public async Task<BaseResult<bool>> RefundCallbackAsync(PayGwResponse<PayGwIpnPayGatewayRefundRequest> request, CancellationToken cancellationToken)
         {
-            if (request.VerifySignature(_publicKey, _secretKey) == false)
-            {
-                return GetBaseResult<bool>(CodeMessage._98, status: StatusEnum.Failed);
-            }
             if (string.IsNullOrEmpty(request.Data))
             {
                 return GetBaseResult<bool>(CodeMessage._98, status: StatusEnum.Failed);
@@ -442,17 +425,14 @@ namespace ETC.EPAY.Integration.Services.PaymentGateway
             if (paymentLog == null)
                 return GetBaseResult<bool>(CodeMessage._211, status: StatusEnum.Failed);
 
-            // Lưu trạng thái ban đầu trước khi kiểm tra
-            var oldPartnerStatus = paymentLog.PartnerPaymentStatus;
-
-            paymentLog.PartnerTransactionId = createOrderCallbackRequest.TransCode;
-            if (paymentLog.PartnerPaymentStatus is PaymentStatus.Fail or PaymentStatus.Success)
+            paymentLog.partner_transaction_id = createOrderCallbackRequest.TransCode;
+            if (paymentLog.partner_payment_status is PaymentStatus.Fail or PaymentStatus.Success)
             {
                 return GetBaseResult(CodeMessage._200, data: false);
             }
 
             // Update payment status
-            paymentLog.PartnerPaymentStatus = createOrderCallbackRequest.TransStatus switch
+            paymentLog.partner_payment_status = createOrderCallbackRequest.TransStatus switch
             {
                 PayGwStatus.NotPaid => PaymentStatus.Pending,
                 PayGwStatus.Paid => PaymentStatus.Success,
@@ -471,36 +451,37 @@ namespace ETC.EPAY.Integration.Services.PaymentGateway
 
             await _unitOfWork.SaveChangesAsync();
 
-            // Process result
-            return GetBaseResult(CodeMessage._200,
-                data: paymentLog.PartnerPaymentStatus == PaymentStatus.Success ? true : false);
-        }
-
-        /// <summary>
-        /// Chức năng: lấy các cấu hình cần thiết cho việc request
-        /// </summary>
-        /// <returns></returns>
-        /// <exception cref="MessageResultException"></exception>
-        private GeneratePaymentResponse MappingReCreateResult(PaymentLog paymentLog)
-        {
-            GeneratePaymentResponse result = new GeneratePaymentResponse
+            // 🔥 Send message to all WebSocket clients
+            var payload = new
             {
-                PartnerPaymentStatus = paymentLog.PartnerPaymentStatus,
-                IsofhPaymentStatus = paymentLog.IsofhPaymentStatus,
-                Type = paymentLog.PaymentType,
-                TransactionId = paymentLog.TransactionId.ConvertTransactionIdToEpayId(),
-                OrderId = paymentLog.OrderId,
-                PaymentUrl = paymentLog.PaymentUrl,
-                QrImage = string.IsNullOrEmpty(paymentLog.Qr) ? string.Empty : paymentLog.Qr.GenerateQrBase64(),
-                RequestDatetimeUtc = paymentLog.RequestDatetimeUtc,
-                ResponseDatetimeUtc = paymentLog.ResponseDatetimeUtc,
-                Invoice = paymentLog.Invoice,
-                ChangePriceInformation = new(paymentLog.OldTotalAmount, paymentLog.NewTotalAmount),
-                ExpiredSeconds = _kioskExpiredSeconds,
-                ExpiredTimeUtc = paymentLog.ExpiredDatetimeUtc
+                SocketId = paymentLog.device_id,
+                OrderCode = paymentLog.order_id,
+                Status = paymentLog.partner_payment_status.ToString()
             };
 
-            return result;
+            var json = System.Text.Json.JsonSerializer.Serialize(payload);
+            var bytes = System.Text.Encoding.UTF8.GetBytes(json);
+
+            foreach (var socket in _wsManagerRefund.GetAllSockets())
+            {
+                if (socket.Key == payload.SocketId)
+                {
+                    if (socket.Value.State == WebSocketState.Open)
+                    {
+                        await socket.Value.SendAsync(
+                            bytes,
+                            WebSocketMessageType.Text,
+                            endOfMessage: true,
+                            cancellationToken: CancellationToken.None
+                        );
+                        break;
+                    }
+                }
+            }
+
+            // Process result
+            return GetBaseResult(CodeMessage._200,
+                data: paymentLog.partner_payment_status == PaymentStatus.Success ? true : false);
         }
     }
 }

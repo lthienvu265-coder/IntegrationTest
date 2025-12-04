@@ -1,4 +1,5 @@
-﻿using ETC.EPAY.Integration.Request;
+﻿using ETC.EPAY.Integration.Models;
+using ETC.EPAY.Integration.Request;
 using ETC.EPAY.Integration.Resources.DTO.Payment.Request;
 using ETC.EPAY.Integration.Resources.DTO.Payment.Response;
 using ETC.EPAY.Integration.Response;
@@ -6,6 +7,7 @@ using ETC.EPAY.Integration.Results;
 using ETC.EPAY.Integration.Services.Payment;
 using ETC.EPAY.Integration.Services.PaymentGateway;
 using Microsoft.AspNetCore.Mvc;
+using System.Net.WebSockets;
 using System.Threading;
 
 namespace ETC.EPAY.Integration.Backend.Controllers
@@ -17,12 +19,18 @@ namespace ETC.EPAY.Integration.Backend.Controllers
         private readonly ILogger<PaymentController> _logger;
         private readonly IPayGwService _payGwService;
         private readonly IPaymentService _paymentService;
-
         public PaymentController(ILogger<PaymentController> logger, IPayGwService payGwService, IPaymentService paymentService)
         {
             _logger = logger;
             _payGwService = payGwService;
             _paymentService = paymentService;
+        }
+
+        [HttpPost("generate_token")]
+        public async Task<BaseResult<Guid>> GenerateTokenSocket(CancellationToken cancellationToken)
+        {
+            var tokenSocket = Guid.NewGuid().ToString();
+            return new BaseResult<Guid>(tokenSocket);
         }
 
         [HttpPost("create_payment")]

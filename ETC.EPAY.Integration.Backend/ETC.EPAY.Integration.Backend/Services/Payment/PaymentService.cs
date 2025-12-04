@@ -60,20 +60,20 @@ namespace ETC.EPAY.Integration.Services.Payment
             var paymentLogModel = new PaymentLog
             {
                 Id = Guid.NewGuid().ToString(),
-                ClientIp = "127.0.0.1",
-                TraceId = "127.0.0.1",
-                RequestDatetimeUtc = utcNow,
-                PartnerPaymentStatus = PaymentStatus.None,
-                IsofhPaymentStatus = PaymentStatus.None,
-                PosId = request.PosRefId,
-                PosIp = request.PosSerial,
-                DeviceId = request.KioskId,
-                DeviceName = "Example",
-                OrderId = request.OrderCode,
-                ExpiredDatetimeUtc = utcNow.AddSeconds(_expiredTime),
-                PaymentFlow = PaymentFlow.Checkin,
-                PaymentType = (PaymentType)request.PaymentType,
-                CurrencyCode = _currencyCode
+                client_ip = "127.0.0.1",
+                trace_id = "127.0.0.1",
+                request_datetime_utc = utcNow,
+                partner_payment_status = PaymentStatus.None,
+                isofh_payment_status = PaymentStatus.None,
+                pos_id = request.PosRefId,
+                pos_ip = request.PosSerial,
+                device_id = request.DeviceId,
+                device_name = "Example",
+                order_id = request.OrderCode,
+                expired_datetime_utc = utcNow.AddSeconds(_expiredTime),
+                payment_flow = PaymentFlow.Checkin,
+                payment_type = (PaymentType)request.PaymentType,
+                currency_code = _currencyCode
             };
             var paymentLog = await _paymentLogDAO.CreateAsync(paymentLogModel);
 
@@ -92,15 +92,15 @@ namespace ETC.EPAY.Integration.Services.Payment
 
             if (generateQrCode.Status == StatusEnum.Success)
             {
-                paymentLog.Qr = generateQrCode.Data.QrCode;
-                paymentLog.PaymentUrl = paymentLog.PaymentType == PaymentType.QrEpay
+                paymentLog.qr = generateQrCode.Data.QrCode;
+                paymentLog.payment_url = paymentLog.payment_type == PaymentType.QrEpay
                     ? generateQrCode.Data.DeepLink
                     : generateQrCode.Data.PaymentUrl;
-                paymentLog.PartnerPaymentStatus = PaymentStatus.Init;
-                paymentLog.PartnerTransactionId = generateQrCode.Data.TransId;
+                paymentLog.partner_payment_status = PaymentStatus.Init;
+                paymentLog.partner_transaction_id = generateQrCode.Data.TransId;
             }
             else
-                paymentLog.PartnerPaymentStatus = PaymentStatus.Fail;
+                paymentLog.partner_payment_status = PaymentStatus.Fail;
             return generateQrCode;
         }
     }
