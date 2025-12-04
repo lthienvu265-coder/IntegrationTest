@@ -6,9 +6,10 @@ using System.Threading.Tasks;
 
 namespace ETC.EPAY.Integration.Resources.Enums
 {
-    public enum PayGwPaymentType
+    public enum WalletFunctionType
     {
-        Now = 1,
-        Hold = 2
+        HostedForm = 0,
+        Web = 1,
+        DeepLink = 2
     }
 }

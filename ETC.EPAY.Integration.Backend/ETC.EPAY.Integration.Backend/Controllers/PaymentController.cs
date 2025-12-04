@@ -13,24 +13,15 @@ using System.Threading;
 namespace ETC.EPAY.Integration.Backend.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     public class PaymentController : ControllerBase
     {
-        private readonly ILogger<PaymentController> _logger;
         private readonly IPayGwService _payGwService;
         private readonly IPaymentService _paymentService;
-        public PaymentController(ILogger<PaymentController> logger, IPayGwService payGwService, IPaymentService paymentService)
+        public PaymentController(IPayGwService payGwService, IPaymentService paymentService)
         {
-            _logger = logger;
             _payGwService = payGwService;
             _paymentService = paymentService;
-        }
-
-        [HttpPost("generate_token")]
-        public async Task<BaseResult<Guid>> GenerateTokenSocket(CancellationToken cancellationToken)
-        {
-            var tokenSocket = Guid.NewGuid().ToString();
-            return new BaseResult<Guid>(tokenSocket);
         }
 
         [HttpPost("create_payment")]
@@ -51,15 +42,6 @@ namespace ETC.EPAY.Integration.Backend.Controllers
             return payGwOrderStatusDataResponse;
         }
 
-        [HttpPost("get_ipn_transfer_result")]
-        public async Task<BaseResult<bool>> CreateOrderCallback(PayGwResponse<PayGwIpnPayGatewayRequest> request, CancellationToken cancellationToken)
-        {
-            var payGwTokenDataResponse = await _payGwService.GetTokenAsync(cancellationToken);
-            var token = payGwTokenDataResponse.Data.Token;
-            var createOrderCallbackResult = await _payGwService.CreateOrderCallbackAsync(request, cancellationToken);
-            return createOrderCallbackResult;
-        }
-
         [HttpPost("refund")]
         public async Task<BaseResult<PayGwRefundResponse>> Refund(PayGwRefundRequest request, CancellationToken cancellationToken)
         {
@@ -67,15 +49,6 @@ namespace ETC.EPAY.Integration.Backend.Controllers
             var token = payGwTokenDataResponse.Data.Token;
             var payGwRefundResponse = await _payGwService.RefundAsync(request, cancellationToken, token);
             return payGwRefundResponse;
-        }
-
-        [HttpPost("get_ipn_refund_result")]
-        public async Task<BaseResult<bool>> RefundCallback(PayGwResponse<PayGwIpnPayGatewayRefundRequest> request, CancellationToken cancellationToken)
-        {
-            var payGwTokenDataResponse = await _payGwService.GetTokenAsync(cancellationToken);
-            var token = payGwTokenDataResponse.Data.Token;
-            var createOrderCallbackResult = await _payGwService.RefundCallbackAsync(request, cancellationToken);
-            return createOrderCallbackResult;
         }
 
         [HttpPost("check_refund_status")]

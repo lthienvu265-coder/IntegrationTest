@@ -1,4 +1,5 @@
-﻿using ETC.EPAY.Integration.Resources.Enums;
+﻿using ETC.EPAY.Integration.Backend.Resources.Enums;
+using ETC.EPAY.Integration.Resources.Enums;
 using ETC.EPAY.Integration.Response;
 using System;
 using System.Collections.Generic;
@@ -14,9 +15,9 @@ namespace ETC.EPAY.Integration.Request
         public string OrderCode { get; set; }
         public string TransCode { get; set; }
         public string ReferenceId { get; set; }
-        public PayGwPaymentMethod PaymentMethod { get; set; }
-        public PayGwStatus TransStatus { get; set; }
-        public PayGwPaymentType RefundType { get; set; }
+        public PaymentMethod PaymentMethod { get; set; }
+        public TransStatus TransStatus { get; set; }
+        public RefundType RefundType { get; set; }
         public long Amount { get; set; }
         public long RefundTime { get; set; }
     }

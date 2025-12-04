@@ -315,12 +315,12 @@ namespace ETC.EPAY.Integration.Services.PaymentGateway
             // Update payment status
             paymentLog.partner_payment_status = payGwReturnUrlRequest.TransStatus switch
             {
-                PayGwStatus.NotPaid => PaymentStatus.Pending,
-                PayGwStatus.Paid => PaymentStatus.Success,
-                PayGwStatus.Fail => PaymentStatus.Fail,
-                PayGwStatus.Pending => PaymentStatus.Pending,
-                PayGwStatus.UserCanceled => PaymentStatus.Cancel,
-                PayGwStatus.WaitPartnerProcess => PaymentStatus.Pending,
+                TransStatus.NotPaid => TransStatus.Pending,
+                TransStatus.Paid => TransStatus.Paid,
+                TransStatus.Fail => TransStatus.Fail,
+                TransStatus.Pending => TransStatus.Pending,
+                TransStatus.UserCanceled => TransStatus.Fail,
+                TransStatus.WaitPartnerProcess => TransStatus.Pending,
                 _ => throw new ArgumentOutOfRangeException()
             };
 
@@ -333,7 +333,7 @@ namespace ETC.EPAY.Integration.Services.PaymentGateway
             await _unitOfWork.SaveChangesAsync();
 
             // Process result
-            return GetBaseResult(CodeMessage._200, data: paymentLog.partner_payment_status == PaymentStatus.Success ? true : false);
+            return GetBaseResult(CodeMessage._200, data: paymentLog.partner_payment_status == TransStatus.Paid ? true : false);
         }
 
         public async Task<BaseResult<bool>> CreateOrderCallbackAsync(PayGwResponse<PayGwIpnPayGatewayRequest> request, CancellationToken cancellationToken)
@@ -358,12 +358,12 @@ namespace ETC.EPAY.Integration.Services.PaymentGateway
             // Update payment status
             paymentLog.partner_payment_status = createOrderCallbackRequest.TransStatus switch
             {
-                PayGwStatus.NotPaid => PaymentStatus.Pending,
-                PayGwStatus.Paid => PaymentStatus.Success,
-                PayGwStatus.Fail => PaymentStatus.Fail,
-                PayGwStatus.Pending => PaymentStatus.Pending,
-                PayGwStatus.UserCanceled => PaymentStatus.Cancel,
-                PayGwStatus.WaitPartnerProcess => PaymentStatus.Pending,
+                TransStatus.NotPaid => TransStatus.Pending,
+                TransStatus.Paid => TransStatus.Paid,
+                TransStatus.Fail => TransStatus.Fail,
+                TransStatus.Pending => TransStatus.Pending,
+                TransStatus.UserCanceled => TransStatus.Fail,
+                TransStatus.WaitPartnerProcess => TransStatus.Pending,
                 _ => throw new ArgumentOutOfRangeException()
             };
 
@@ -380,7 +380,8 @@ namespace ETC.EPAY.Integration.Services.PaymentGateway
             {
                 SocketId = paymentLog.device_id,
                 OrderCode = paymentLog.order_id,
-                Status = paymentLog.partner_payment_status.ToString()
+                Status = paymentLog.partner_payment_status.ToString(),
+                TransCode = paymentLog.partner_transaction_id
             };
 
             var json = System.Text.Json.JsonSerializer.Serialize(payload);
@@ -405,7 +406,7 @@ namespace ETC.EPAY.Integration.Services.PaymentGateway
 
             // Process result
             return GetBaseResult(CodeMessage._200,
-                data: paymentLog.partner_payment_status == PaymentStatus.Success ? true : false);
+                data: paymentLog.partner_payment_status == TransStatus.Paid ? true : false);
         }
 
         public async Task<BaseResult<bool>> RefundCallbackAsync(PayGwResponse<PayGwIpnPayGatewayRefundRequest> request, CancellationToken cancellationToken)
@@ -426,20 +427,16 @@ namespace ETC.EPAY.Integration.Services.PaymentGateway
                 return GetBaseResult<bool>(CodeMessage._211, status: StatusEnum.Failed);
 
             paymentLog.partner_transaction_id = createOrderCallbackRequest.TransCode;
-            if (paymentLog.partner_payment_status is PaymentStatus.Fail or PaymentStatus.Success)
-            {
-                return GetBaseResult(CodeMessage._200, data: false);
-            }
 
             // Update payment status
             paymentLog.partner_payment_status = createOrderCallbackRequest.TransStatus switch
             {
-                PayGwStatus.NotPaid => PaymentStatus.Pending,
-                PayGwStatus.Paid => PaymentStatus.Success,
-                PayGwStatus.Fail => PaymentStatus.Fail,
-                PayGwStatus.Pending => PaymentStatus.Pending,
-                PayGwStatus.UserCanceled => PaymentStatus.Cancel,
-                PayGwStatus.WaitPartnerProcess => PaymentStatus.Pending,
+                TransStatus.NotPaid => TransStatus.Pending,
+                TransStatus.Paid => TransStatus.Paid,
+                TransStatus.Fail => TransStatus.Fail,
+                TransStatus.Pending => TransStatus.Pending,
+                TransStatus.UserCanceled => TransStatus.Fail,
+                TransStatus.WaitPartnerProcess => TransStatus.Pending,
                 _ => throw new ArgumentOutOfRangeException()
             };
 
@@ -456,7 +453,8 @@ namespace ETC.EPAY.Integration.Services.PaymentGateway
             {
                 SocketId = paymentLog.device_id,
                 OrderCode = paymentLog.order_id,
-                Status = paymentLog.partner_payment_status.ToString()
+                Status = paymentLog.partner_payment_status.ToString(),
+                TransCode = paymentLog.partner_transaction_id
             };
 
             var json = System.Text.Json.JsonSerializer.Serialize(payload);
@@ -481,7 +479,7 @@ namespace ETC.EPAY.Integration.Services.PaymentGateway
 
             // Process result
             return GetBaseResult(CodeMessage._200,
-                data: paymentLog.partner_payment_status == PaymentStatus.Success ? true : false);
+                data: paymentLog.partner_payment_status == TransStatus.NotPaid ? true : false);
         }
     }
 }

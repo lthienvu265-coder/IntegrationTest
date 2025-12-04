@@ -17,9 +17,10 @@ namespace ETC.EPAY.Integration.Models
         public string trace_id { get; set; }
         public int transaction_id { get; set; }
         public PaymentType payment_type { get; set; }
+        public string payment_method { get; set; }
         public DateTime request_datetime_utc { get; set; }
         public string partner_transaction_id { get; set; }
-        public PaymentStatus partner_payment_status { get; set; }
+        public TransStatus partner_payment_status { get; set; }
         public string pos_id { get; set; }
         public string pos_ip { get; set; }
         public string device_id { get; set; }
@@ -35,8 +36,6 @@ namespace ETC.EPAY.Integration.Models
         public string ma_ho_so { get; set; }
         public string ma_nb { get; set; }
         public string ma_phieu_thu { get; set; }
-        public PaymentStatus isofh_payment_status { get; set; }
-
         public decimal new_total_amount { get; set; }
         public decimal old_total_amount { get; set; }
         public string his_register { get; set; }

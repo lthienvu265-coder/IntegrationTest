@@ -1,10 +1,5 @@
-﻿using ETC.EPAY.Integration.Resources.Enums;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Transactions;
+﻿using ETC.EPAY.Integration.Backend.Resources.Enums;
+using ETC.EPAY.Integration.Resources.Enums;
 
 namespace ETC.EPAY.Integration.Response
 {
@@ -22,9 +17,9 @@ namespace ETC.EPAY.Integration.Response
         public string TransCode { get; set; }
         public long RefundTime { get; set; }
         public long Amount { get; set; }
-        public PayGwPaymentType RefundType { get; set; }
-        public PaymentStatus PaymentMethod { get; set; }
-        public TransactionStatus TransStatus { get; set; }
+        public RefundType RefundType { get; set; }
+        public PaymentMethod PaymentMethod { get; set; }
+        public TransStatus TransStatus { get; set; }
         public int ErrorCode { get; set; }
     }
 }

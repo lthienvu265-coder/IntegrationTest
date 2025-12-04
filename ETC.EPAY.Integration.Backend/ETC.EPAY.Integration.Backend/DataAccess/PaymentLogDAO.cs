@@ -137,7 +137,7 @@ namespace ETC.EPAY.Integration.DataAccess
                 return false;
             }
 
-            return payment.partner_payment_status is PaymentStatus.Success or PaymentStatus.Fail;
+            return payment.partner_payment_status is TransStatus.Paid or TransStatus.Fail;
         }
 
         public async Task<(bool isSuccess, Models.PaymentLog data)> CheckPaymentAsync(CheckPaymentRequest request)

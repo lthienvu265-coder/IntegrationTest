@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ETC.EPAY.Integration.Resources.Enums
 {
-    public enum PayGwStatus
+    public enum TransStatus
     {
         NotPaid = 0,
         Paid = 1,

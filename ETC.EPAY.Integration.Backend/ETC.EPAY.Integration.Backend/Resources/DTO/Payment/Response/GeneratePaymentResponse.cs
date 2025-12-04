@@ -9,8 +9,7 @@ namespace ETC.EPAY.Integration.Resources.DTO.Payment.Response
 {
     public class GeneratePaymentResponse
     {
-        public PaymentStatus PartnerPaymentStatus { get; set; }
-        public PaymentStatus IsofhPaymentStatus { get; set; }
+        public TransStatus PartnerPaymentStatus { get; set; }
         public PaymentType Type { get; set; }
         public string TransactionId { get; set; }
         public string OrderId { get; set; }

@@ -13,7 +13,7 @@ namespace ETC.EPAY.Integration.Request
         public string OrderCode { get; set; }
         public string TransCode { get; set; }
         public string PartnerCode { get; set; }
-        public PayGwPaymentMethod PaymentMethod { get; set; }
-        public PayGwStatus TransStatus { get; set; }
+        public PaymentMethod PaymentMethod { get; set; }
+        public TransStatus TransStatus { get; set; }
     }
 }

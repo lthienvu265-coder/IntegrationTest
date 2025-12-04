@@ -37,18 +37,6 @@ namespace ETC.EPAY.Integration.Services.Payment
             _paymentLogDAO = paymentLogDAO;
             _payGwService = payGwService;
         }
-
-        private BaseResult<Inner> GetBaseResult<Inner>(CodeMessage statusCode, Inner data = default, StatusEnum status = StatusEnum.Success, string message = "")
-        {
-            string nameStatusCode = statusCode.GetElementNameCodeMessage();
-            string tempCode = string.IsNullOrEmpty(nameStatusCode) ? "217" : nameStatusCode.RemoveSpaceCharacter();
-            return new BaseResult<Inner>()
-            {
-                StatusCode = tempCode,
-                Data = data,
-                Status = status,
-            };
-        }
         public Task<BaseResult<CheckPaymentResponse>> CheckPaymentAsync(CheckPaymentRequest request)
         {
             throw new NotImplementedException();
@@ -63,8 +51,7 @@ namespace ETC.EPAY.Integration.Services.Payment
                 client_ip = "127.0.0.1",
                 trace_id = "127.0.0.1",
                 request_datetime_utc = utcNow,
-                partner_payment_status = PaymentStatus.None,
-                isofh_payment_status = PaymentStatus.None,
+                partner_payment_status = TransStatus.Pending,
                 pos_id = request.PosRefId,
                 pos_ip = request.PosSerial,
                 device_id = request.DeviceId,
@@ -72,35 +59,29 @@ namespace ETC.EPAY.Integration.Services.Payment
                 order_id = request.OrderCode,
                 expired_datetime_utc = utcNow.AddSeconds(_expiredTime),
                 payment_flow = PaymentFlow.Checkin,
-                payment_type = (PaymentType)request.PaymentType,
-                currency_code = _currencyCode
+                payment_type = request.PaymentType,
+                currency_code = _currencyCode,
+                payment_method = request.PaymentMethod
             };
             var paymentLog = await _paymentLogDAO.CreateAsync(paymentLogModel);
 
-            if ((PaymentType)request.PaymentType is PaymentType.QrEpay or PaymentType.QrMobileBanking or PaymentType.CardReader
-                   or PaymentType.DomesticCard or PaymentType.CreditAndDebitCard)
-            {
-                var payGwOrderDataResponse = await GenerateQrCodeGatewayAsync(paymentLogModel, request, _feeSum, token);
-                return payGwOrderDataResponse;
-            }
-            return null;
+            var payGwOrderDataResponse = await PayGatewayCreateOrderAsync(paymentLogModel, request, _feeSum, token);
+            return payGwOrderDataResponse;
         }
 
-        private async Task<BaseResult<PayGwOrderDataResponse>> GenerateQrCodeGatewayAsync(PaymentLog paymentLog, PayGwCreateOrderDataRequest request, decimal totalAmount, string token)
+        private async Task<BaseResult<PayGwOrderDataResponse>> PayGatewayCreateOrderAsync(PaymentLog paymentLog, PayGwCreateOrderDataRequest request, decimal totalAmount, string token)
         {
             BaseResult<PayGwOrderDataResponse> generateQrCode = await _payGwService.CreateOrderAsync(request, default, token);
 
             if (generateQrCode.Status == StatusEnum.Success)
             {
                 paymentLog.qr = generateQrCode.Data.QrCode;
-                paymentLog.payment_url = paymentLog.payment_type == PaymentType.QrEpay
-                    ? generateQrCode.Data.DeepLink
-                    : generateQrCode.Data.PaymentUrl;
-                paymentLog.partner_payment_status = PaymentStatus.Init;
+                paymentLog.payment_url = int.Parse(paymentLog.payment_method) == (int)PaymentMethod.ThanhToanQuaMobileBankingQr ? generateQrCode.Data.DeepLink : generateQrCode.Data.PaymentUrl;
+                paymentLog.partner_payment_status = TransStatus.Pending;
                 paymentLog.partner_transaction_id = generateQrCode.Data.TransId;
             }
             else
-                paymentLog.partner_payment_status = PaymentStatus.Fail;
+                paymentLog.partner_payment_status = TransStatus.Fail;
             return generateQrCode;
         }
     }

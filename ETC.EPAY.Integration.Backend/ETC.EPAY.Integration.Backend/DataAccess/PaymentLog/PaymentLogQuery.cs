@@ -97,13 +97,12 @@ namespace ETC.EPAY.Integration.DataAccess.PaymentLog
                 direction: ParameterDirection.Input);
 
             param.Add("@paymentType", model.payment_type, dbType: DbType.Int32, direction: ParameterDirection.Input);
+            param.Add("@paymentMethod", model.payment_method, dbType: DbType.String, direction: ParameterDirection.Input);
             param.Add("@requestDatetimeUtc", model.request_datetime_utc, dbType: DbType.DateTime,
                 direction: ParameterDirection.Input);
             param.Add("@partnerTransactionId", model.partner_transaction_id, dbType: DbType.String,
                 direction: ParameterDirection.Input);
             param.Add("@partnerPaymentStatus", model.partner_payment_status, dbType: DbType.Int32,
-                direction: ParameterDirection.Input);
-            param.Add("@isofhPaymentStatus", model.isofh_payment_status, dbType: DbType.Int32,
                 direction: ParameterDirection.Input);
             param.Add("@posId", model.pos_id ?? string.Empty, dbType: DbType.String,
                 direction: ParameterDirection.Input);
@@ -144,6 +143,7 @@ namespace ETC.EPAY.Integration.DataAccess.PaymentLog
                     created_datetime_utc,
                     updated_datetime_utc,
                     payment_type,
+                    payment_method,
                     request_datetime_utc,
                     partner_transaction_id,
                     partner_payment_status,
@@ -168,7 +168,7 @@ namespace ETC.EPAY.Integration.DataAccess.PaymentLog
                     payment_url
                 ) 
                 values (@id, @clientIp, @traceId, @createdDatetimeUtc, @updatedDatetimeUtc,
-                @paymentType, @requestDatetimeUtc, @partnerTransactionId, @partnerPaymentStatus,@isofhPaymentStatus, @posId, @posIp, @deviceId,@deviceName, @orderId,
+                @paymentType, @paymentMethod, @requestDatetimeUtc, @partnerTransactionId, @partnerPaymentStatus,@isofhPaymentStatus, @posId, @posIp, @deviceId,@deviceName, @orderId,
                 @responseDatetimeUtc, @expiredDatetimeUtc, @qr, @paymentFlow, @phoneNumber, @currencyCode,
                 @maHoSo, @maNb, @maPhieuThu, @newTotalAmount, @oldTotalAmount, @hisRegister, @paymentUrl) RETURNING @transaction_id;";
 
@@ -207,8 +207,6 @@ namespace ETC.EPAY.Integration.DataAccess.PaymentLog
             var param = new DynamicParameters();
             param.Add("@id", model.Id, dbType: DbType.String, direction: ParameterDirection.Input);
             param.Add("@partnerPaymentStatus", model.partner_payment_status, dbType: DbType.Int32,
-                direction: ParameterDirection.Input);
-            param.Add("@isofhPaymentStatus", model.isofh_payment_status, dbType: DbType.Int32,
                 direction: ParameterDirection.Input);
             param.Add("@updatedDatetimeUtc", DateTime.UtcNow, dbType: DbType.DateTime,
                 direction: ParameterDirection.Input);

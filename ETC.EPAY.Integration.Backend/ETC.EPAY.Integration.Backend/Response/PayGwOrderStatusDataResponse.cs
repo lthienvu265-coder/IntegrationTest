@@ -16,56 +16,55 @@ namespace ETC.EPAY.Integration.Response
 
         public bool GetPaidTransaction(out PayGwTransactionInfo? transactionInfo)
         {
-            transactionInfo = TransactionInfos?.FirstOrDefault(x => x.TransStatus == PayGwStatus.Paid);
+            transactionInfo = TransactionInfos?.FirstOrDefault(x => x.TransStatus == TransStatus.Paid);
             return transactionInfo != null;
         }
 
         public PayGwTransactionInfo? GetFinalTransactionInfo()
         {
-            return TransactionInfos?.FirstOrDefault(x => x.TransStatus is PayGwStatus.Paid or PayGwStatus.Fail or PayGwStatus.UserCanceled);
+            return TransactionInfos?.FirstOrDefault(x => x.TransStatus is TransStatus.Paid or TransStatus.Fail or TransStatus.UserCanceled);
         }
 
-        public PaymentStatus GetPaymentStatus(PaymentLog paymentLog)
+        public TransStatus GetPaymentStatus(PaymentLog paymentLog)
         {
             if (ErrorCode != PayGwErrorCode.Success)
             {
                 return ErrorCode switch
                 {
-                    PayGwErrorCode.OrderProcessing => PaymentStatus.Pending,
-                    PayGwErrorCode.UnpaidOrder => paymentLog.IsExpired ? PaymentStatus.Timeout : PaymentStatus.Pending,
-                    PayGwErrorCode.PaymentExpired => PaymentStatus.Timeout,
-                    _ => PaymentStatus.Unknown
+                    PayGwErrorCode.OrderProcessing => TransStatus.Pending,
+                    PayGwErrorCode.UnpaidOrder => paymentLog.IsExpired ? TransStatus.Fail : TransStatus.Pending,
+                    _ => TransStatus.Pending
                 };
             }
 
             if (TransactionInfos == null || TransactionInfos.Count == 0)
             {
-                return PaymentStatus.Pending;
+                return TransStatus.Pending;
             }
 
-            if (TransactionInfos.Any(x => x.TransStatus == PayGwStatus.Paid))
+            if (TransactionInfos.Any(x => x.TransStatus == TransStatus.Paid))
             {
-                return PaymentStatus.Success;
+                return TransStatus.Paid;
             }
 
             if (TransactionInfos.Count == 1)
             {
                 return TransactionInfos[0].TransStatus switch
                 {
-                    PayGwStatus.NotPaid => paymentLog.IsExpired ? PaymentStatus.Timeout : PaymentStatus.Pending,
-                    PayGwStatus.Pending => PaymentStatus.Pending,
-                    PayGwStatus.Fail => PaymentStatus.Fail,
-                    PayGwStatus.UserCanceled => PaymentStatus.Cancel,
-                    PayGwStatus.WaitPartnerProcess => PaymentStatus.Pending,
-                    _ => PaymentStatus.Unknown
+                    TransStatus.NotPaid => paymentLog.IsExpired ? TransStatus.Fail : TransStatus.Pending,
+                    TransStatus.Pending => TransStatus.Pending,
+                    TransStatus.Fail => TransStatus.Fail,
+                    TransStatus.UserCanceled => TransStatus.Fail,
+                    TransStatus.WaitPartnerProcess => TransStatus.Pending,
+                    _ => TransStatus.Pending
                 };
             }
 
             return ErrorCode switch
             {
-                PayGwErrorCode.OrderProcessing => PaymentStatus.Pending,
-                PayGwErrorCode.UnpaidOrder => paymentLog.IsExpired ? PaymentStatus.Timeout : PaymentStatus.Pending,
-                _ => PaymentStatus.Unknown
+                PayGwErrorCode.OrderProcessing => TransStatus.Pending,
+                PayGwErrorCode.UnpaidOrder => paymentLog.IsExpired ? TransStatus.Fail : TransStatus.Pending,
+                _ => TransStatus.Pending
             };
         }
     }
@@ -79,7 +78,7 @@ namespace ETC.EPAY.Integration.Response
         public long FeeAmount { get; set; }
         public long PaymentTime { get; set; }
         public long? TimeLimit { get; set; }
-        public PayGwPaymentMethod PaymentMethod { get; set; }
-        public PayGwStatus TransStatus { get; set; }
+        public PaymentMethod PaymentMethod { get; set; }
+        public TransStatus TransStatus { get; set; }
     }
 }

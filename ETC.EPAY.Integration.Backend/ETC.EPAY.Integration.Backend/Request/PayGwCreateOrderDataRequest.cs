@@ -18,7 +18,7 @@ namespace ETC.EPAY.Integration.Request
         public string MerchantPassword { get; set; }
         public string OrderCode { get; set; }
         public string OrderDescription { get; set; }
-        public PayGwPaymentType PaymentType { get; set; }
+        public PaymentType PaymentType { get; set; }
         public string Currency { get; set; } = "VND";
         public string ReturnUrl { get; set; }
         public string CancelUrl { get; set; }
@@ -55,7 +55,7 @@ namespace ETC.EPAY.Integration.Request
         public string? PosClientId { get; set; }
         public string? PosTerminalId { get; set; }
         public string? PosMerchantOutletId { get; set; }
-        public PayGwWalletFunctionType? WalletFunctionType { get; set; }
+        public WalletFunctionType? WalletFunctionType { get; set; }
         public bool IsCardReader { get; set; }
         public PayGwCardInfo? CardInfo { get; set; }
         public string? TypeCardAccount { get; set; }
