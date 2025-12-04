@@ -147,7 +147,6 @@ namespace ETC.EPAY.Integration.DataAccess.PaymentLog
                     request_datetime_utc,
                     partner_transaction_id,
                     partner_payment_status,
-                    isofh_payment_status,
                     pos_id,
                     pos_ip,
                     device_id,
@@ -168,7 +167,7 @@ namespace ETC.EPAY.Integration.DataAccess.PaymentLog
                     payment_url
                 ) 
                 values (@id, @clientIp, @traceId, @createdDatetimeUtc, @updatedDatetimeUtc,
-                @paymentType, @paymentMethod, @requestDatetimeUtc, @partnerTransactionId, @partnerPaymentStatus,@isofhPaymentStatus, @posId, @posIp, @deviceId,@deviceName, @orderId,
+                @paymentType, @paymentMethod, @requestDatetimeUtc, @partnerTransactionId, @partnerPaymentStatus, @posId, @posIp, @deviceId,@deviceName, @orderId,
                 @responseDatetimeUtc, @expiredDatetimeUtc, @qr, @paymentFlow, @phoneNumber, @currencyCode,
                 @maHoSo, @maNb, @maPhieuThu, @newTotalAmount, @oldTotalAmount, @hisRegister, @paymentUrl) RETURNING @transaction_id;";
 
