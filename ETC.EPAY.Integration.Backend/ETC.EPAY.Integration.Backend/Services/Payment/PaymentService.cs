@@ -24,14 +24,9 @@ namespace ETC.EPAY.Integration.Services.Payment
     {
         private IPaymentLogDAO _paymentLogDAO;
         private IPayGwService _payGwService;
-        private HttpContext _httpContext => new HttpContextAccessor().HttpContext;
         private string _currencyCode = "VND";
         private long _expiredTime = 60;
         private long _feeSum = 120;
-        private string _merchantCode;
-        private string _merchantPassword;
-        private long _appExpiredSeconds;
-        private long _kioskExpiredSeconds;
         public PaymentService(IPaymentLogDAO paymentLogDAO, IPayGwService payGwService)
         {
             _paymentLogDAO = paymentLogDAO;

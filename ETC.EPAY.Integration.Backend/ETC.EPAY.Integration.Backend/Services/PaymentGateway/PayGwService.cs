@@ -3,26 +3,14 @@ using ETC.EPAY.Integration.Backend;
 using ETC.EPAY.Integration.DataAccess;
 using ETC.EPAY.Integration.DataAccess.UnitOfWork;
 using ETC.EPAY.Integration.Extensions;
-using ETC.EPAY.Integration.Models;
 using ETC.EPAY.Integration.Request;
 using ETC.EPAY.Integration.Resources;
-using ETC.EPAY.Integration.Resources.DTO.Payment.Response;
 using ETC.EPAY.Integration.Resources.Enums;
 using ETC.EPAY.Integration.Response;
 using ETC.EPAY.Integration.Results;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
-using Org.BouncyCastle.Asn1.Ocsp;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http.Json;
 using System.Net.WebSockets;
-using System.Reflection;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace ETC.EPAY.Integration.Services.PaymentGateway
 {
@@ -36,11 +24,9 @@ namespace ETC.EPAY.Integration.Services.PaymentGateway
         /// Private key dùng để giải mã dữ liệu từ Cổng Thanh Toán (Do BE Kiosk tạo ra)
         /// </summary>
         private string _privateKey;
-        private string _publicKey;
         private string _secretKey;
         private IPaymentLogDAO _paymentLogDAO;
         private IUnitOfWork _unitOfWork;
-        private int _kioskExpiredSeconds;
         private readonly WebSocketCreateOrderConnectionManager _wsManagerCreateOrder;
         private readonly WebSocketRefundConnectionManager _wsManagerRefund;
         protected readonly ResponseMessage ResponseMessage = new ResponseMessage();
@@ -89,7 +75,7 @@ namespace ETC.EPAY.Integration.Services.PaymentGateway
 
                 return await PostAsync<PayGwTokenDataResponse>(url, payload, cancellationToken, _httpClient);
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return GetBaseResult<PayGwTokenDataResponse>(CodeMessage._102, status: StatusEnum.Failed);
             }
@@ -114,7 +100,7 @@ namespace ETC.EPAY.Integration.Services.PaymentGateway
                 _httpClient.DefaultRequestHeaders.Add("clientIp", "127.0.0.1");
                 return await PostAsync<PayGwOrderDataResponse>(url, payload, cancellationToken, _httpClient);
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return GetBaseResult<PayGwOrderDataResponse>(CodeMessage._102, status: StatusEnum.Failed);
             }
@@ -139,7 +125,7 @@ namespace ETC.EPAY.Integration.Services.PaymentGateway
                 _httpClient.DefaultRequestHeaders.Add("clientIp", "127.0.0.1");
                 return await PostAsync<PayGwOrderStatusDataResponse>(url, payload, cancellationToken, _httpClient);
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return GetBaseResult<PayGwOrderStatusDataResponse>(CodeMessage._102, status: StatusEnum.Failed);
             }
@@ -170,7 +156,7 @@ namespace ETC.EPAY.Integration.Services.PaymentGateway
                 }
                 return GetBaseResult(CodeMessage._200, data: decryptedData);
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return GetBaseResult<T>(CodeMessage._102, status: StatusEnum.Failed);
             }
@@ -194,7 +180,7 @@ namespace ETC.EPAY.Integration.Services.PaymentGateway
                 _httpClient.DefaultRequestHeaders.Add("clientIp", "127.0.0.1");
                 return await PostAsync<PayGwRefundResponse>(url, payload, cancellationToken, _httpClient);
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return GetBaseResult<PayGwRefundResponse>(CodeMessage._102, status: StatusEnum.Failed);
             }
@@ -218,7 +204,7 @@ namespace ETC.EPAY.Integration.Services.PaymentGateway
                 _httpClient.DefaultRequestHeaders.Add("clientIp", "127.0.0.1");
                 return await PostAsync<PayGwCheckRefundStatusResponse>(url, payload, cancellationToken, _httpClient);
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return GetBaseResult<PayGwCheckRefundStatusResponse>(CodeMessage._102, status: StatusEnum.Failed);
             }
@@ -242,7 +228,7 @@ namespace ETC.EPAY.Integration.Services.PaymentGateway
                 _httpClient.DefaultRequestHeaders.Add("clientIp", "127.0.0.1");
                 return await PostAsync<PayGwDeleteTokenResponse>(url, payload, cancellationToken, _httpClient);
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return GetBaseResult<PayGwDeleteTokenResponse>(CodeMessage._102, status: StatusEnum.Failed);
             }
@@ -266,7 +252,7 @@ namespace ETC.EPAY.Integration.Services.PaymentGateway
                 _httpClient.DefaultRequestHeaders.Add("clientIp", "127.0.0.1");
                 return await PostAsync<PayGwRetrieveTokenResponse>(url, payload, cancellationToken, _httpClient);
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return GetBaseResult<PayGwRetrieveTokenResponse>(CodeMessage._102, status: StatusEnum.Failed);
             }
@@ -290,7 +276,7 @@ namespace ETC.EPAY.Integration.Services.PaymentGateway
                 _httpClient.DefaultRequestHeaders.Add("clientIp", "127.0.0.1");
                 return await PostAsync<PayGwQrCusPaymentResponse>(url, payload, cancellationToken, _httpClient);
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return GetBaseResult<PayGwQrCusPaymentResponse>(CodeMessage._102, status: StatusEnum.Failed);
             }
@@ -375,21 +361,12 @@ namespace ETC.EPAY.Integration.Services.PaymentGateway
 
             await _unitOfWork.SaveChangesAsync();
 
-            // 🔥 Send message to all WebSocket clients
-            var payload = new
-            {
-                SocketId = paymentLog.device_id,
-                OrderCode = paymentLog.order_id,
-                Status = paymentLog.partner_payment_status.ToString(),
-                TransCode = paymentLog.partner_transaction_id
-            };
-
-            var json = System.Text.Json.JsonSerializer.Serialize(payload);
+            var json = System.Text.Json.JsonSerializer.Serialize(createOrderCallbackRequest);
             var bytes = System.Text.Encoding.UTF8.GetBytes(json);
 
             foreach (var socket in _wsManagerCreateOrder.GetAllSockets())
             {
-                if (socket.Key == payload.SocketId)
+                if (socket.Key == paymentLog.device_id)
                 {
                     if (socket.Value.State == WebSocketState.Open)
                     {
@@ -448,21 +425,12 @@ namespace ETC.EPAY.Integration.Services.PaymentGateway
 
             await _unitOfWork.SaveChangesAsync();
 
-            // 🔥 Send message to all WebSocket clients
-            var payload = new
-            {
-                SocketId = paymentLog.device_id,
-                OrderCode = paymentLog.order_id,
-                Status = paymentLog.partner_payment_status.ToString(),
-                TransCode = paymentLog.partner_transaction_id
-            };
-
-            var json = System.Text.Json.JsonSerializer.Serialize(payload);
+            var json = System.Text.Json.JsonSerializer.Serialize(createOrderCallbackRequest);
             var bytes = System.Text.Encoding.UTF8.GetBytes(json);
 
             foreach (var socket in _wsManagerRefund.GetAllSockets())
             {
-                if (socket.Key == payload.SocketId)
+                if (socket.Key == paymentLog.device_id)
                 {
                     if (socket.Value.State == WebSocketState.Open)
                     {

@@ -21,7 +21,7 @@ namespace ETC.EPAY.Integration.DataAccess.UnitOfWork
                 this.Context.Open();
                 this.Transaction = Context.BeginTransaction();
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 NpgsqlConnection.ClearAllPools();
 
