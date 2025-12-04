@@ -54,6 +54,7 @@ builder.Services.AddScoped<IUnitOfWorkContext>(provider =>
 });
 
 builder.Services.AddOpenApi();
+builder.WebHost.UseUrls("http://0.0.0.0:5006");
 
 var app = builder.Build();
 

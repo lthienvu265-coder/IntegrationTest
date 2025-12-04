@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ETC.EPAY.Integration.Backend")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+9a2869af1bb96edd86bf077922bc88924e801209")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d34c67d9495d65ce37f61106c89da97018fabb3a")]
 [assembly: System.Reflection.AssemblyProductAttribute("ETC.EPAY.Integration.Backend")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ETC.EPAY.Integration.Backend")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
