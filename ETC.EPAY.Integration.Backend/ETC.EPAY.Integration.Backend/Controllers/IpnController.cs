@@ -18,7 +18,7 @@ namespace ETC.EPAY.Integration.Backend.Controllers
         }
 
         [HttpPost("epay/payment-result")]
-        public async Task<BaseResult<bool>> CreateOrderCallback(PayGwResponse<PayGwIpnPayGatewayRequest> request, CancellationToken cancellationToken)
+        public async Task<BaseResult<bool>> CreateOrderCallback(PayGwResponse<IpnPayGatewayRequest> request, CancellationToken cancellationToken)
         {
             var payGwTokenDataResponse = await _payGwService.GetTokenAsync(cancellationToken);
             var token = payGwTokenDataResponse.Data.Token;
@@ -27,7 +27,7 @@ namespace ETC.EPAY.Integration.Backend.Controllers
         }
 
         [HttpPost("epay/refund-result")]
-        public async Task<BaseResult<bool>> RefundCallback(PayGwResponse<PayGwIpnPayGatewayRefundRequest> request, CancellationToken cancellationToken)
+        public async Task<BaseResult<bool>> RefundCallback(PayGwResponse<IpnPayGatewayRefundRequest> request, CancellationToken cancellationToken)
         {
             var payGwTokenDataResponse = await _payGwService.GetTokenAsync(cancellationToken);
             var token = payGwTokenDataResponse.Data.Token;

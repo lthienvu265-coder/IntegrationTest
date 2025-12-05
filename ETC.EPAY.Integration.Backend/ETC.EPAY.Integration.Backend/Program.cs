@@ -5,6 +5,7 @@ using ETC.EPAY.Integration.Services.Payment;
 using ETC.EPAY.Integration.Services.PaymentGateway;
 using Microsoft.Extensions.Configuration;
 using System.Net.WebSockets;
+using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -63,7 +64,6 @@ app.Map("/ws_createorder", async (HttpContext context, WebSocketCreateOrderConne
 {
     var query = context.Request.Query;
     string deviceId = query["deviceId"];
-    string model = query["model"];
 
     if (string.IsNullOrEmpty(deviceId))
         deviceId = Guid.NewGuid().ToString(); // fallback
@@ -74,9 +74,16 @@ app.Map("/ws_createorder", async (HttpContext context, WebSocketCreateOrderConne
 
         manager.AddSocket(deviceId, socket);
 
-        Console.WriteLine($"Client Create Order connected: {deviceId}, Model: {model}");
-
-        var buffer = new byte[1024];
+        Console.WriteLine($"Client Create Order connected: {deviceId}");
+        var buffer = Encoding.UTF8.GetBytes("Connecting To Create Order WebSocket Successfully");
+        await socket.SendAsync(buffer, WebSocketMessageType.Text, true, CancellationToken.None);
+        buffer = new byte[1024];
+        Task.Run(async () =>
+        {
+            await Task.Delay(120000);
+            await manager.RemoveSocketAsync(deviceId);
+            await socket.CloseAsync(WebSocketCloseStatus.NormalClosure, "Timeout", CancellationToken.None);
+        });
         while (socket.State == WebSocketState.Open)
         {
             var result = await socket.ReceiveAsync(buffer, CancellationToken.None);
@@ -91,7 +98,6 @@ app.Map("/ws_refund", async (HttpContext context, WebSocketRefundConnectionManag
 {
     var query = context.Request.Query;
     string deviceId = query["deviceId"];
-    string model = query["model"];
 
     if (string.IsNullOrEmpty(deviceId))
         deviceId = Guid.NewGuid().ToString(); // fallback
@@ -102,9 +108,17 @@ app.Map("/ws_refund", async (HttpContext context, WebSocketRefundConnectionManag
 
         manager.AddSocket(deviceId, socket);
 
-        Console.WriteLine($"Client Refund connected: {deviceId}, Model: {model}");
+        Console.WriteLine($"Client Refund connected: {deviceId}");
 
-        var buffer = new byte[1024];
+        var buffer = Encoding.UTF8.GetBytes("Connecting To Refund WebSocket Successfully");
+        await socket.SendAsync(buffer, WebSocketMessageType.Text, true, CancellationToken.None);
+        buffer = new byte[1024];
+        Task.Run(async () =>
+        {
+            await Task.Delay(120000);
+            await manager.RemoveSocketAsync(deviceId);
+            await socket.CloseAsync(WebSocketCloseStatus.NormalClosure, "Timeout", CancellationToken.None);
+        });
         while (socket.State == WebSocketState.Open)
         {
             var result = await socket.ReceiveAsync(buffer, CancellationToken.None);

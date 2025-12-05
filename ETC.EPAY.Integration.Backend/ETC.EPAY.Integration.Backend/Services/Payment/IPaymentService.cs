@@ -1,4 +1,4 @@
-﻿using ETC.EPAY.Integration.Request;
+﻿using ETC.EPAY.Integration.Backend.EpayRequest;
 using ETC.EPAY.Integration.Resources.DTO.Payment.Request;
 using ETC.EPAY.Integration.Resources.DTO.Payment.Response;
 using ETC.EPAY.Integration.Response;

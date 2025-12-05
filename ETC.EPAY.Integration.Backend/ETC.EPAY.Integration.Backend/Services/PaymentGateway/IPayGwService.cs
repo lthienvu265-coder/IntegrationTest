@@ -1,4 +1,5 @@
-﻿using ETC.EPAY.Integration.Request;
+﻿using ETC.EPAY.Integration.Backend.EpayRequest;
+using ETC.EPAY.Integration.Request;
 using ETC.EPAY.Integration.Response;
 using ETC.EPAY.Integration.Results;
 using System;
@@ -18,11 +19,11 @@ namespace ETC.EPAY.Integration.Services.PaymentGateway
         Task<BaseResult<PayGwCheckRefundStatusResponse>> CheckRefundStatusAsync(PayGwCheckRefundStatusRequest request, CancellationToken cancellationToken, string token);
         Task<BaseResult<PayGwDeleteTokenResponse>> DeleteTokenAsync(PayGwDeleteTokenRequest request, CancellationToken cancellationToken, string token);
         Task<BaseResult<PayGwRetrieveTokenResponse>> RetrieveTokenAsync(PayGwRetrieveTokenRequest request, CancellationToken cancellationToken, string token);
-        Task<BaseResult<PayGwQrCusPaymentResponse>> QrCusPaymentAsync(PayGwQrCusPaymentRequest request, CancellationToken cancellationToken, string token);
+        Task<BaseResult<PayGwQrCusPaymentResponse>> QrCusPaymentAsync(QrCusPaymentRequest request, CancellationToken cancellationToken, string token);
     
     
         Task<BaseResult<bool>> CreateOrderReturnUrlAsync(string epayResult, CancellationToken cancellationToken);
-        Task<BaseResult<bool>> CreateOrderCallbackAsync(PayGwResponse<PayGwIpnPayGatewayRequest> request, CancellationToken cancellationToken);
-        Task<BaseResult<bool>> RefundCallbackAsync(PayGwResponse<PayGwIpnPayGatewayRefundRequest> request, CancellationToken cancellationToken);
+        Task<BaseResult<bool>> CreateOrderCallbackAsync(PayGwResponse<IpnPayGatewayRequest> request, CancellationToken cancellationToken);
+        Task<BaseResult<bool>> RefundCallbackAsync(PayGwResponse<IpnPayGatewayRefundRequest> request, CancellationToken cancellationToken);
     }
 }

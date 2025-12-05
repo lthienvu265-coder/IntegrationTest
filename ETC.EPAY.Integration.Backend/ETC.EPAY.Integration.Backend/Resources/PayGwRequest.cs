@@ -7,7 +7,7 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
-namespace ETC.EPAY.Integration.Request
+namespace ETC.EPAY.Integration.Backend.Resources
 {
     public class PayGwRequest<T>
     {

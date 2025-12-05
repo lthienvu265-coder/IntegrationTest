@@ -1,7 +1,7 @@
-﻿using ETC.EPAY.Integration.DataAccess;
+﻿using ETC.EPAY.Integration.Backend.EpayRequest;
+using ETC.EPAY.Integration.DataAccess;
 using ETC.EPAY.Integration.Extensions;
 using ETC.EPAY.Integration.Models;
-using ETC.EPAY.Integration.Request;
 using ETC.EPAY.Integration.Resources;
 using ETC.EPAY.Integration.Resources.DTO.Payment.Request;
 using ETC.EPAY.Integration.Resources.DTO.Payment.Response;

@@ -1,4 +1,4 @@
-﻿using ETC.EPAY.Integration.Request;
+﻿using ETC.EPAY.Integration.Backend.EpayRequest;
 using ETC.EPAY.Integration.Resources.Enums;
 using System;
 using System.Collections.Generic;

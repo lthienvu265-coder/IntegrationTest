@@ -1,6 +1,6 @@
 ﻿namespace ETC.EPAY.Integration.Backend.Request
 {
-    public class PayGwCreatePaymentRequest
+    public class CreatePaymentRequest
     {
         public string OrderCode { get; set; }
         public int PackageType { get; set; }

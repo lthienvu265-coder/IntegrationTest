@@ -1,5 +1,7 @@
 ﻿using AutoMapper;
 using ETC.EPAY.Integration.Backend;
+using ETC.EPAY.Integration.Backend.EpayRequest;
+using ETC.EPAY.Integration.Backend.Resources;
 using ETC.EPAY.Integration.DataAccess;
 using ETC.EPAY.Integration.DataAccess.UnitOfWork;
 using ETC.EPAY.Integration.Extensions;
@@ -259,13 +261,13 @@ namespace ETC.EPAY.Integration.Services.PaymentGateway
             }
         }
 
-        public async Task<BaseResult<PayGwQrCusPaymentResponse>> QrCusPaymentAsync(PayGwQrCusPaymentRequest request, CancellationToken cancellationToken, string token)
+        public async Task<BaseResult<PayGwQrCusPaymentResponse>> QrCusPaymentAsync(QrCusPaymentRequest request, CancellationToken cancellationToken, string token)
         {
             var _httpClient = new HttpClient();
             try
             {
-                PayGwRequest<PayGwQrCusPaymentRequest> payload =
-                    PayGwRequest<PayGwQrCusPaymentRequest>.Create(request, _merchantCode, _secretKey, _privateKey);
+                PayGwRequest<QrCusPaymentRequest> payload =
+                    PayGwRequest<QrCusPaymentRequest>.Create(request, _merchantCode, _secretKey, _privateKey);
 
                 string url = $"{_baseAddress}{Resources.PaymentGateway.QrCusPayment}";
 
@@ -286,7 +288,7 @@ namespace ETC.EPAY.Integration.Services.PaymentGateway
         public async Task<BaseResult<bool>> CreateOrderReturnUrlAsync(string epayResult, CancellationToken cancellationToken)
         {
             string epayResultJson = Encoding.UTF8.GetString(Convert.FromBase64String(epayResult));
-            var payGwReturnUrlRequest = JsonConvert.DeserializeObject<PayGwReturnUrlRequest>(epayResultJson);
+            var payGwReturnUrlRequest = JsonConvert.DeserializeObject<ReturnUrlRequest>(epayResultJson);
             if (string.IsNullOrEmpty(payGwReturnUrlRequest?.TransCode))
                 return GetBaseResult<bool>(CodeMessage._98, status: StatusEnum.Failed);
 
@@ -323,7 +325,7 @@ namespace ETC.EPAY.Integration.Services.PaymentGateway
             return GetBaseResult(CodeMessage._200, data: paymentLog.partner_payment_status == TransStatus.Paid ? true : false);
         }
 
-        public async Task<BaseResult<bool>> CreateOrderCallbackAsync(PayGwResponse<PayGwIpnPayGatewayRequest> request, CancellationToken cancellationToken)
+        public async Task<BaseResult<bool>> CreateOrderCallbackAsync(PayGwResponse<IpnPayGatewayRequest> request, CancellationToken cancellationToken)
         {
             if (string.IsNullOrEmpty(request.Data))
             {
@@ -400,7 +402,7 @@ namespace ETC.EPAY.Integration.Services.PaymentGateway
                 data: paymentLog.partner_payment_status == TransStatus.Paid ? true : false);
         }
 
-        public async Task<BaseResult<bool>> RefundCallbackAsync(PayGwResponse<PayGwIpnPayGatewayRefundRequest> request, CancellationToken cancellationToken)
+        public async Task<BaseResult<bool>> RefundCallbackAsync(PayGwResponse<IpnPayGatewayRefundRequest> request, CancellationToken cancellationToken)
         {
             if (string.IsNullOrEmpty(request.Data))
             {

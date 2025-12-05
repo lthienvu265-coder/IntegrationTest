@@ -1,4 +1,5 @@
-﻿using ETC.EPAY.Integration.Extensions;
+﻿using ETC.EPAY.Integration.Backend.EpayRequest.Base;
+using ETC.EPAY.Integration.Extensions;
 using ETC.EPAY.Integration.Resources.Enums;
 using Newtonsoft.Json;
 using System;
@@ -10,7 +11,7 @@ using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace ETC.EPAY.Integration.Request
 {
-    public class PayGwIpnPayGatewayRequest : PayGwDataRequestBase
+    public class IpnPayGatewayRequest : PayGwDataRequestBase
     {
         public string OrderCode { get; set; }
         public string TransCode { get; set; }

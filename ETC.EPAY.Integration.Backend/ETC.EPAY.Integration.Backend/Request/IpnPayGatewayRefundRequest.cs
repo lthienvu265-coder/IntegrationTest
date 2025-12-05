@@ -1,4 +1,5 @@
-﻿using ETC.EPAY.Integration.Backend.Resources.Enums;
+﻿using ETC.EPAY.Integration.Backend.EpayRequest.Base;
+using ETC.EPAY.Integration.Backend.Resources.Enums;
 using ETC.EPAY.Integration.Resources.Enums;
 using ETC.EPAY.Integration.Response;
 using System;
@@ -9,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace ETC.EPAY.Integration.Request
 {
-    public class PayGwIpnPayGatewayRefundRequest : PayGwDataRequestBase
+    public class IpnPayGatewayRefundRequest
     {
         public string RefundRequestId { get; set; }
         public string OrderCode { get; set; }
