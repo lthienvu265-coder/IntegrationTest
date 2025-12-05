@@ -217,7 +217,6 @@ namespace ETC.EPAY.Integration.DataAccess.PaymentLog
             // SQL component
             string query = @"UPDATE TBL_PAYMENT_LOG
                 SET PARTNER_PAYMENT_STATUS = @partnerPaymentStatus,
-                ISOFH_PAYMENT_STATUS = @isofhPaymentStatus,
                 INVOICE = @invoice,
                 UPDATED_DATETIME_UTC = @updatedDatetimeUtc,
                 PARTNER_TRANSACTION_ID = @partnerTransactionId
