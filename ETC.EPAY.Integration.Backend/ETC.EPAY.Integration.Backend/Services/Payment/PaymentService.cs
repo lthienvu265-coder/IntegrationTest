@@ -56,7 +56,9 @@ namespace ETC.EPAY.Integration.Services.Payment
                 payment_flow = PaymentFlow.Checkin,
                 payment_type = request.PaymentType,
                 currency_code = _currencyCode,
-                payment_method = request.PaymentMethod
+                payment_method = request.PaymentMethod,
+                new_total_amount = request.TotalAmount,
+                old_total_amount = request.TotalAmount
             };
             var paymentLog = await _paymentLogDAO.CreateAsync(paymentLogModel);
 

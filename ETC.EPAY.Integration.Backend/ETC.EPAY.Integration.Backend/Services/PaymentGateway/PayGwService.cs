@@ -9,6 +9,7 @@ using ETC.EPAY.Integration.Resources.Enums;
 using ETC.EPAY.Integration.Response;
 using ETC.EPAY.Integration.Results;
 using Newtonsoft.Json;
+using Org.BouncyCastle.Crypto.Agreement.JPake;
 using System.Net.WebSockets;
 using System.Text;
 
@@ -361,7 +362,20 @@ namespace ETC.EPAY.Integration.Services.PaymentGateway
 
             await _unitOfWork.SaveChangesAsync();
 
-            var json = System.Text.Json.JsonSerializer.Serialize(createOrderCallbackRequest);
+            var webSocketCreateOrderCallbackRequest = new
+            {
+                invoiceType = "Phí thành viên",
+                invoiceCode = paymentLog.order_id,
+                paymentMethod = paymentLog.payment_method == "04" ? "QRcode" : "Thanh toán qua thẻ ngân hàng",
+                paymentCode = createOrderCallbackRequest.TransCode,
+                paymentTime = DateTimeOffset.FromUnixTimeMilliseconds(createOrderCallbackRequest.TimeRequest).UtcDateTime,
+                amount = paymentLog.new_total_amount,
+                discount = 0,
+                totalAmount = paymentLog.old_total_amount,
+                status = paymentLog.partner_payment_status == TransStatus.Paid ? "Thành công" : "Thất bại"
+            };
+
+            var json = System.Text.Json.JsonSerializer.Serialize(webSocketCreateOrderCallbackRequest);
             var bytes = System.Text.Encoding.UTF8.GetBytes(json);
 
             foreach (var socket in _wsManagerCreateOrder.GetAllSockets())
