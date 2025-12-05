@@ -113,7 +113,7 @@
     "Parameters": [
       {
         "Name": "request",
-        "Type": "ETC.EPAY.Integration.Request.PayGwCreateOrderDataRequest",
+        "Type": "ETC.EPAY.Integration.Backend.Request.PayGwCreatePaymentRequest",
         "IsRequired": true
       }
     ],
