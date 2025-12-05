@@ -54,11 +54,11 @@ namespace ETC.EPAY.Integration.Services.Payment
                 order_id = request.OrderCode,
                 expired_datetime_utc = utcNow.AddSeconds(_expiredTime),
                 payment_flow = PaymentFlow.Checkin,
-                payment_type = request.PaymentType,
+                payment_type = (PaymentType)request.PaymentType,
                 currency_code = _currencyCode,
                 payment_method = request.PaymentMethod,
-                new_total_amount = request.TotalAmount,
-                old_total_amount = request.TotalAmount
+                new_total_amount = (decimal)request.TotalAmount,
+                old_total_amount = (decimal)request.TotalAmount
             };
             var paymentLog = await _paymentLogDAO.CreateAsync(paymentLogModel);
 

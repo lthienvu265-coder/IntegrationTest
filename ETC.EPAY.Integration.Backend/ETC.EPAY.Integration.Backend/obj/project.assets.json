@@ -1135,11 +1135,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\chaung\\Desktop\\New folder (34)\\IntegrationTest\\ETC.EPAY.Integration.Backend\\ETC.EPAY.Integration.Backend\\ETC.EPAY.Integration.Backend.csproj",
+      "projectUniqueName": "C:\\Users\\chaung\\Desktop\\New folder (35)\\IntegrationTest\\ETC.EPAY.Integration.Backend\\ETC.EPAY.Integration.Backend\\ETC.EPAY.Integration.Backend.csproj",
       "projectName": "ETC.EPAY.Integration.Backend",
-      "projectPath": "C:\\Users\\chaung\\Desktop\\New folder (34)\\IntegrationTest\\ETC.EPAY.Integration.Backend\\ETC.EPAY.Integration.Backend\\ETC.EPAY.Integration.Backend.csproj",
+      "projectPath": "C:\\Users\\chaung\\Desktop\\New folder (35)\\IntegrationTest\\ETC.EPAY.Integration.Backend\\ETC.EPAY.Integration.Backend\\ETC.EPAY.Integration.Backend.csproj",
       "packagesPath": "C:\\Users\\chaung\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\chaung\\Desktop\\New folder (34)\\IntegrationTest\\ETC.EPAY.Integration.Backend\\ETC.EPAY.Integration.Backend\\obj\\",
+      "outputPath": "C:\\Users\\chaung\\Desktop\\New folder (35)\\IntegrationTest\\ETC.EPAY.Integration.Backend\\ETC.EPAY.Integration.Backend\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
